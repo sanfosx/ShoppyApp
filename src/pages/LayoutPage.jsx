@@ -1,4 +1,4 @@
-import {Outlet} from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 
@@ -6,11 +6,13 @@ import Footer from '../components/Footer/Footer'
 const LayoutPage = () => {
     return (
 
-        <div className="container-fluid">
-            <Navbar/>
-            <Outlet></Outlet>
-            <Footer/>
-            
+        <div className="content-main"> 
+        <Navbar />
+            <div className="container">
+                
+                <Outlet></Outlet>
+            </div>
+            <Footer />
         </div>
     )
 
