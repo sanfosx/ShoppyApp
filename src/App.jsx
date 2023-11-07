@@ -8,6 +8,7 @@ import CataloguePage from './pages/CataloguePage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
+import AboutPage from './pages/AboutPage'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/categorias" element={<Category />}></Route>
         <Route path="/Products" element={<Product />}></Route>
         <Route path="/catalogo" element={<CataloguePage />}></Route>
+        <Route path="/about" element={<AboutPage />}></Route>
       </Route>
     </Routes>
   )

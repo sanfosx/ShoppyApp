@@ -8,7 +8,7 @@ const Navbar = () => {
  <div className=" border-bottom py-3 mx-3">
    <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
      
-     <Link classNameName=" d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none" to="/">
+     <Link className=" d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none" to="/">
        <img src={logoShoppyApp} alt="fuck" width="40" height="40" className="d-inline-block align-text-top"/>
        
      </Link>
@@ -16,10 +16,10 @@ const Navbar = () => {
  
      <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
        
-       <li><a href="#" className="nav-link px-2 link-body-emphasis">Catalogo</a></li>
-       <li><a href="#" className="nav-link px-2 link-body-emphasis">Productos</a></li>
-       <li><a href="#" className="nav-link px-2 link-body-emphasis">Categorias</a></li>
-       <li><a href="#" className="nav-link px-2 link-secondary">Quienes Somos</a></li>
+       <li><Link  to="./catalogo" className="nav-link px-2 link-body-emphasis">Catalogo </Link></li>
+       <li><Link to="./products" className="nav-link px-2 link-body-emphasis">Productos </Link></li>
+       <li><Link  to ="./categorias"className="nav-link px-2 link-body-emphasis">Categorias</Link></li>
+       <li><Link to="about" className="nav-link px-2 link-secondary">Quienes Somos</Link></li>
      </ul>
  
      <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 text-top" role="search">
