@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 
 const CataloguePage = () => {
   
-  const { data, isLoading, isError, error, refetch } = useQuery('products', () => PlatziAPI('products'));
+  const { data, isLoading, isError, error, refetch } = useQuery('products', () => PlatziAPI('products', 10, 10));
 
   const deleteProductMutation = useDeleteData();
 
