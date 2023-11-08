@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom'
 import LayoutPage from './pages/LayoutPage'
 import LandingPage from './pages/LandingPage'
-import Product from './components/Products/Product'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import AboutPage from './pages/AboutPage'
 import ProductListPage from './pages/ProducListPage'
 import CategoryListPage from './pages/CategoryListPage'
+import ProductPage from './pages/ProductPage'
 
 function App() {
 
@@ -19,8 +19,11 @@ function App() {
        <Route path="/forgotpassword" element={<ForgotPasswordPage />}></Route>
       <Route element={<LayoutPage />} >
         <Route path="/categorias" element={<CategoryListPage />}></Route>
-        <Route path="/Products" element={<Product />}></Route>
+        <Route path="/categorias/:id" element={<CategoryListPage />}></Route>
+       
         <Route path="/catalogo" element={<ProductListPage />}></Route>
+        <Route path="/products" element={<ProductListPage />}></Route>
+        <Route path="/products/:id" element={<ProductPage />}></Route>
         <Route path="/about" element={<AboutPage />}></Route>
       </Route>
     </Routes>
