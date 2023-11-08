@@ -1,38 +1,15 @@
 
+import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query';
 import PlatziAPI from '../../src/data/ApiPlatzi';
-import { useDeleteData, useCreateData } from '../../src/data/ApiPlatzi';
+
 
 
 
 const CategoryListPage = () => {
-    const { data, isLoading, isError, error, refetch } = useQuery('Categories', () => PlatziAPI('categories'));
+    const { data, isLoading, isError, error } = useQuery('Categories', () => PlatziAPI('categories'));
 
-    //CREATE
-    const createCategoryMutation = useCreateData();
-    
-    const handleCreateCategory = async () => {
-        const newCategory = {
-            name: categoryName,
-            image: categoryImg,
-        };
 
-        console.log('que tiene newdata', newCategory)
-        await createCategoryMutation.mutateAsync(newCategory); // Usar mutacion asincrona
-
-        // Después de eliminar, volver a cargar los datos
-        refetch();
-
-    };
-
-    //ELIMINAR
-    const deleteCategoryMutation = useDeleteData();
-    const handleDeleteCategory = async (categoryId) => {
-        await deleteCategoryMutation.mutateAsync(`categories/${categoryId}`); // Usar mutacion asincrona
-
-        // Después de eliminar, volver a cargar los datos
-        refetch();
-    };
 
     //CARGA
     if (isLoading) {
@@ -51,14 +28,20 @@ const CategoryListPage = () => {
             </div>
             <div className='d-flex flex-wrap align-content-center justify-content-center'>
                 {data?.map((category) => (
-                    <div className=" d-flex card text-bg-dark g-col-4 m-2" style={{ width: '20rem' }} key={category.id}>
-                        <img src={category.image} className="card-img" alt="..." />
-                        <div className="card-img-overlay">
-                            <h5 className="card-title">{category.name}</h5>
+                    <Link to={`/categorias/${category.id}`} state={{ categoryName: category.name }} key={category.id}>
+                        <div className=" d-flex card text-bg-dark g-col-4 m-2" style={{ width: '20rem' }} >
+
+                            <img src={category.image} className="card-img" alt="..." />
+                            <div className="card-img-overlay">
+                                <h5 className="card-title">{category.name}</h5>
+
+                            </div>
 
                         </div>
-                    </div>
+                    </Link>
+
                 ))}
+
             </div>
 
 

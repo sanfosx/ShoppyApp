@@ -8,6 +8,7 @@ import AboutPage from './pages/AboutPage'
 import ProductListPage from './pages/ProducListPage'
 import CategoryListPage from './pages/CategoryListPage'
 import ProductPage from './pages/ProductPage'
+import CategoryPage from './pages/CategoryPage'
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
        <Route path="/forgotpassword" element={<ForgotPasswordPage />}></Route>
       <Route element={<LayoutPage />} >
         <Route path="/categorias" element={<CategoryListPage />}></Route>
-        <Route path="/categorias/:id" element={<CategoryListPage />}></Route>
+        <Route path="/categorias/:id" element={<CategoryPage />}></Route>
        
         <Route path="/catalogo" element={<ProductListPage />}></Route>
         <Route path="/products" element={<ProductListPage />}></Route>
