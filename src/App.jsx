@@ -9,6 +9,7 @@ import ProductListPage from './pages/ProducListPage'
 import CategoryListPage from './pages/CategoryListPage'
 import ProductPage from './pages/ProductPage'
 import CategoryPage from './pages/CategoryPage'
+import CataloguePage from './pages/CataloguePage'
 
 function App() {
 
@@ -21,8 +22,7 @@ function App() {
       <Route element={<LayoutPage />} >
         <Route path="/categorias" element={<CategoryListPage />}></Route>
         <Route path="/categorias/:id" element={<CategoryPage />}></Route>
-       
-        <Route path="/catalogo" element={<ProductListPage />}></Route>
+        <Route path="/catalogo" element={<CataloguePage />}></Route>
         <Route path="/products" element={<ProductListPage />}></Route>
         <Route path="/products/:id" element={<ProductPage />}></Route>
         <Route path="/about" element={<AboutPage />}></Route>
