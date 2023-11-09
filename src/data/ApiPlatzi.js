@@ -13,7 +13,7 @@ export const useDeleteData = () => {
     }
   );
 };
-
+//Crear Categoria
 export const useCreateData = () => {
   const queryClient = useQueryClient();
   return useMutation(
@@ -26,6 +26,22 @@ export const useCreateData = () => {
     }
   );
 };
+
+//Crear Producto
+export const useCreateProduct = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    (newData) => axios.post(`${API_BASE_URL}products/`, newData),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('products'); // Invalida la caché para actualizar los datos
+
+      },
+    }
+  );
+};
+
+
 //get pltziapi
 export const PlatziAPI = async (url, limit = null, offset = null, id = null) => {
   let response= null

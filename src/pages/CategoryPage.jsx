@@ -1,14 +1,33 @@
+import { useState } from 'react'
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useQuery } from 'react-query';
-import{ PlatziAPI} from '../../src/data/ApiPlatzi';
+import { PlatziAPI, useCreateProduct } from '../../src/data/ApiPlatzi';
+import AddProductModal from '../components/Modals/AddProductModal';
+
 
 
 const CategoryPage = () => {
+
+    
+    const [showProductModal, setShowProductModal] = useState(false);
     const navigate = useNavigate()
     const { id } = useParams()
-    const { data, isLoading, isError, error } = useQuery('CategoriesProducts', () => PlatziAPI(`categories/${id}/products`));
-
+    const { data, isLoading, isError, error, refetch } = useQuery('CategoriesProducts', () => PlatziAPI(`categories/${id}/products`));
     const { state } = useLocation()
+   
+console.log(state)
+    //CREATE
+    const createCategoryMutation = useCreateProduct();
+    const handleCreateProduct = async (newProduct) => {
+
+        console.log('que tiene newdata', newProduct)
+        await createCategoryMutation.mutateAsync(newProduct); // Usar mutacion asincrona
+
+        // Después de eliminar, volver a cargar los datos
+        refetch();
+
+    };
+
 
     if (isLoading) {
         return <div>Cargando...</div>;
@@ -22,7 +41,7 @@ const CategoryPage = () => {
         <div className='container-content'>
             <button className="btn btn-dark" onClick={() => navigate(-1)}>Volver atras</button>
             <h1>Categoria {state.categoryName} </h1>
-            <button className="btn btn-dark" >+ Agregar producto</button>
+            <button className="btn btn-dark" onClick={() => setShowProductModal(true)} >+ Agregar producto</button>
             <br />
             <br />
             <div className="d-flex flex-wrap align-content-center justify-content-center mr-2">
@@ -50,6 +69,12 @@ const CategoryPage = () => {
                 ))}
             </div>
 
+            {/*MODAL */}
+            <AddProductModal
+                show={showProductModal}
+                onHide={() => setShowProductModal(false)}
+                onAddProduct={handleCreateProduct}
+                />
 
         </div>
     );

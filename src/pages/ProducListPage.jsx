@@ -1,14 +1,32 @@
 
-
+import { useState } from 'react';
+import  AddProductModal  from '../components/Modals/AddProductModal';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom'
-import {PlatziAPI,  useDeleteData } from '../../src/data/ApiPlatzi';
+import { PlatziAPI, useCreateProduct, useDeleteData } from '../../src/data/ApiPlatzi';
 
 
 
 const ProductListPage = () => {
 
-  const { data, isLoading, isError, error, refetch } = useQuery('products', () => PlatziAPI('products'));
+  const [showProductModal, setShowProductModal] = useState(false);
+  const { data, isLoading, isError, error, refetch } = useQuery('Products', () => PlatziAPI('products'));
+  
+
+
+  //CREATE
+  const createCategoryMutation = useCreateProduct();
+  const handleCreateProduct = async (newProduct) => {
+
+    console.log('que tiene newdata', newProduct)
+    await createCategoryMutation.mutateAsync(newProduct); // Usar mutacion asincrona
+
+    // Después de eliminar, volver a cargar los datos
+    refetch();
+
+  };
+
+
 
 
 
@@ -34,7 +52,7 @@ const ProductListPage = () => {
     <div className='container-fluid'>
       <div className="product-list-title">
         <h1>Lista de Productos</h1>
-        <button className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">+ Agregar</button>
+        <button className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setShowProductModal(true)}>+ Agregar</button>
       </div>
       <div className="d-flex flex-wrap align-content-center justify-content-center mr-2">
         {data?.map((product) => (
@@ -61,46 +79,11 @@ const ProductListPage = () => {
       </div>
 
       {/*MODAL */}
-      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">Nuevo Producto</h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-              <form>
-                <div className="mb-3">
-                  <label htmlFor="recipient-name" className="col-form-label">Titulo:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="recipient-name"
-                    placeholder="Ingresa el nombre del producto"
-                
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="recipient-name" className="col-form-label">Descripcion:</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="recipient-name"
-                    placeholder="Ingresa una descripcion del producto"
-
-                  />
-                </div>
-
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-ligth" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" className="btn btn-dark" >Agregar</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <AddProductModal
+        show={showProductModal}
+        onHide={() => setShowProductModal(false)}
+        onAddProduct={handleCreateProduct}
+      />
 
     </div>
 

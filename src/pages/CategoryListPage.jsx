@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useQuery } from 'react-query';
 import { PlatziAPI, useCreateData } from '../../src/data/ApiPlatzi';
-import AddCategoryModal from '../components/AddCategoryModal';
-
+import AddCategoryModal from '../components/Modals/AddCategoryModal';
 
 
 
@@ -12,7 +11,7 @@ const CategoryListPage = () => {
 
     const [showModal, setShowModal] = useState(false);
 
-    const { data, isLoading, isError, error, refetch } = useQuery('Categories', () => PlatziAPI('categories'));
+    const { data, isLoading, isError, error, refetch } = useQuery('categories', () => PlatziAPI('categories'));
 
     
     
@@ -46,7 +45,7 @@ const handleCreateCategory = async (newCategory) => {
             </div>
             <div className='d-flex flex-wrap align-content-center justify-content-center'>
                 {data?.map((category) => (
-                    <Link to={`/categorias/${category.id}`} state={{ categoryName: category.name }} key={category.id}>
+                    <Link to={`/categorias/${category.id}`} state={{ categoryName: category.name}} key={category.id}>
                         <div className=" d-flex card text-bg-dark g-col-4 m-2" style={{ width: '20rem' }} >
 
                             <img src={category.image} className="card-img" alt="..." />
