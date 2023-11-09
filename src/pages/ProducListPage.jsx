@@ -1,18 +1,18 @@
 
+
 import { useQuery } from 'react-query';
-import PlatziAPI from '../../src/data/ApiPlatzi';
 import { Link } from 'react-router-dom'
-import { useDeleteData } from '../../src/data/ApiPlatzi';
+import {PlatziAPI,  useDeleteData } from '../../src/data/ApiPlatzi';
 
 
 
 const ProductListPage = () => {
 
-
   const { data, isLoading, isError, error, refetch } = useQuery('products', () => PlatziAPI('products'));
 
-  const deleteProductMutation = useDeleteData();
 
+
+  const deleteProductMutation = useDeleteData();
 
   // eslint-disable-next-line no-unused-vars
   const handleDeleteProduct = async (productId) => {
@@ -34,20 +34,20 @@ const ProductListPage = () => {
     <div className='container-fluid'>
       <div className="product-list-title">
         <h1>Lista de Productos</h1>
-        <button className="btn btn-dark">+ Agregar</button>
+        <button className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">+ Agregar</button>
       </div>
       <div className="d-flex flex-wrap align-content-center justify-content-center mr-2">
-          {data?.map((product) => (
-            <div className="card m-2" style={{maxWidth: '600px'}} key= {product.id}>
+        {data?.map((product) => (
+          <div className="card m-2" style={{ maxWidth: '600px' }} key={product.id}>
             <div className="row g-0">
               <div className="col-md-6">
-              <img src={product.images[0]} className="img-fluid rounded m-2" alt="..."/>
+                <img src={product.images[0]} className="img-fluid rounded m-2" alt="..." />
               </div>
               <div className="col-md-6">
                 <div className="card-body">
                   <h5 className="card-title">{product.title}</h5>
                   <p className="card-text">{product.description}</p>
-                 
+
                   <h1 className="">${product.price}</h1>
                   <p className="card-text"><small className="text-body-secondary">{product.category.name}</small></p>
                   <button className="btn btn-primary">Lo Quiero</button>
@@ -57,9 +57,51 @@ const ProductListPage = () => {
               </div>
             </div>
           </div>
-          ))}
+        ))}
+      </div>
+
+      {/*MODAL */}
+      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">Nuevo Producto</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+              <form>
+                <div className="mb-3">
+                  <label htmlFor="recipient-name" className="col-form-label">Titulo:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="recipient-name"
+                    placeholder="Ingresa el nombre del producto"
+                
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="recipient-name" className="col-form-label">Descripcion:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="recipient-name"
+                    placeholder="Ingresa una descripcion del producto"
+
+                  />
+                </div>
+
+              </form>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-ligth" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" className="btn btn-dark" >Agregar</button>
+            </div>
+          </div>
         </div>
-    
+      </div>
+
     </div>
 
   );

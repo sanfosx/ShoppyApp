@@ -1,14 +1,32 @@
 
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import { useQuery } from 'react-query';
-import PlatziAPI from '../../src/data/ApiPlatzi';
+import { PlatziAPI, useCreateData } from '../../src/data/ApiPlatzi';
+import AddCategoryModal from '../components/AddCategoryModal';
 
 
 
 
 const CategoryListPage = () => {
-    const { data, isLoading, isError, error } = useQuery('Categories', () => PlatziAPI('categories'));
 
+    const [showModal, setShowModal] = useState(false);
+
+    const { data, isLoading, isError, error, refetch } = useQuery('Categories', () => PlatziAPI('categories'));
+
+    
+    
+    //CREATE
+const createCategoryMutation = useCreateData();
+const handleCreateCategory = async (newCategory) => {
+ 
+  console.log('que tiene newdata', newCategory)
+  await createCategoryMutation.mutateAsync(newCategory); // Usar mutacion asincrona
+
+  // Después de eliminar, volver a cargar los datos
+  refetch();
+ 
+};
 
 
     //CARGA
@@ -24,7 +42,7 @@ const CategoryListPage = () => {
         <div className="category-list-container">
             <div className="category-list-title">
                 <h1>Categorias</h1>
-                <button className="btn btn-dark">+ Agregar</button>
+                <button className="btn btn-dark" onClick={() => setShowModal(true)}>+ Agregar</button>
             </div>
             <div className='d-flex flex-wrap align-content-center justify-content-center'>
                 {data?.map((category) => (
@@ -43,6 +61,13 @@ const CategoryListPage = () => {
                 ))}
 
             </div>
+
+            {/*MODAL */}
+            <AddCategoryModal
+                show={showModal}
+                onHide={() => setShowModal(false)}
+                onAddCategory={handleCreateCategory}
+            />
 
 
         </div>

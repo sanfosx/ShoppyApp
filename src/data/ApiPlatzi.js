@@ -27,7 +27,7 @@ export const useCreateData = () => {
   );
 };
 //get pltziapi
- const PlatziAPI = async (url, limit = null, offset = null, id = null) => {
+export const PlatziAPI = async (url, limit = null, offset = null, id = null) => {
   let response= null
   if (id !== null) {
      response = await fetch(`${API_BASE_URL + url}/${id}`);
@@ -46,5 +46,4 @@ export const useCreateData = () => {
   
 }
 
-export default PlatziAPI
 

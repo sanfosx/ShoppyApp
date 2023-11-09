@@ -1,4 +1,4 @@
-import PlatziAPI from '../../src/data/ApiPlatzi';
+import {PlatziAPI} from '../../src/data/ApiPlatzi';
 import { Link } from 'react-router-dom'
 import { useDeleteData } from '../../src/data/ApiPlatzi';
 import { useQuery } from 'react-query';

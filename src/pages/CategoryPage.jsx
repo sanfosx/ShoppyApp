@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useQuery } from 'react-query';
-import PlatziAPI from '../../src/data/ApiPlatzi';
+import{ PlatziAPI} from '../../src/data/ApiPlatzi';
 
 
 const CategoryPage = () => {
@@ -22,7 +22,7 @@ const CategoryPage = () => {
         <div className='container-content'>
             <button className="btn btn-dark" onClick={() => navigate(-1)}>Volver atras</button>
             <h1>Categoria {state.categoryName} </h1>
-            <button className="btn btn-dark">+ Agregar producto</button>
+            <button className="btn btn-dark" >+ Agregar producto</button>
             <br />
             <br />
             <div className="d-flex flex-wrap align-content-center justify-content-center mr-2">
@@ -49,6 +49,8 @@ const CategoryPage = () => {
                     </div>
                 ))}
             </div>
+
+
         </div>
     );
 }

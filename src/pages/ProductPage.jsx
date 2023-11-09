@@ -1,7 +1,7 @@
 
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from 'react-query';
-import PlatziAPI from '../../src/data/ApiPlatzi';
+import {PlatziAPI} from '../../src/data/ApiPlatzi';
 
 
 const ProductPage = () => {
