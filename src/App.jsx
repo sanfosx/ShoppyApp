@@ -10,6 +10,9 @@ import CategoryListPage from './pages/CategoryListPage'
 import ProductPage from './pages/ProductPage'
 import CategoryPage from './pages/CategoryPage'
 import CataloguePage from './pages/CataloguePage'
+import UserFavoritePage from './pages/UserFavoritePage'
+import UserShoppingPage from './pages/UserShoppingPage'
+import UserDataPage from './pages/UserDataPage'
 
 function App() {
 
@@ -25,6 +28,9 @@ function App() {
         <Route path="/catalogo" element={<CataloguePage />}></Route>
         <Route path="/products" element={<ProductListPage />}></Route>
         <Route path="/products/:id" element={<ProductPage />}></Route>
+        <Route path="/favoritos" element={<UserFavoritePage />}></Route>
+        <Route path="/compras" element={<UserShoppingPage />}></Route>
+        <Route path="/userdata" element={<UserDataPage />}></Route>
         <Route path="/about" element={<AboutPage />}></Route>
       </Route>
     </Routes>

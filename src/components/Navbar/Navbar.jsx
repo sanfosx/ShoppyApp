@@ -31,9 +31,9 @@ const Navbar = () => {
          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle"/>
        </a>
        <ul className="dropdown-menu text-small">
-         <li><a className="dropdown-item" href="#">Mis datos</a></li>
-         <li><a className="dropdown-item" href="#">Favoritos</a></li>
-         <li><a className="dropdown-item" href="#">Compras</a></li>
+         <li><Link className="dropdown-item" to="./userdata">Mis datos</Link></li>
+         <li><Link className="dropdown-item" to="./favoritos">Favoritos</Link></li>
+         <li><Link className="dropdown-item" to="./compras">Compras</Link></li>
          <li><hr className="dropdown-divider"/></li>
          <li><a className="dropdown-item" href="#">Cerrar sesion</a></li>
        </ul>

@@ -29,6 +29,8 @@ const ProductPage = () => {
                     <img src={data.images[0]} alt="" className="rounded mx-auto d-block" />
                     <h2>$ {data.price}</h2>
                     <p>{data.description}</p>
+                    <p>Creado el : {data.creationAt}</p>
+                    <p>Ultima Actualizacion : {data.updatedAt}</p>
                     <button className="btn btn-dark" onClick={() => navigate(-1)}>Volver atras</button>
                    
                 </div>
