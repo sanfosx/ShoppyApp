@@ -57,13 +57,13 @@ const CategoryListPage = () => {
                                             <h2 className="card-title">{category.name}</h2>
                                         </div>
                                         <div className="category-actions">
-                                            <button type="button" className="btn btn-light mx-1">
+                                            <button type="button" className="btn btn-light mx-1 rounded-circle">
                                                 <i className="bi bi-pencil"></i>
                                             </button>
-                                            <button type="button" className="btn btn-danger mx-1">
+                                            <button type="button" className="btn btn-danger mx-1 rounded-circle">
                                                 <i className="bi bi-trash"></i>
                                             </button>
-                                            <button type="button" className="btn btn-dark mx-1">
+                                            <button type="button" className="btn btn-dark mx-1 rounded-circle">
                                                 <i className="bi bi-plus"></i>
                                             </button>
                                         </div>
