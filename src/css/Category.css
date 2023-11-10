@@ -15,7 +15,7 @@
 
   .category-image {
     width: 100%;
-    height: 100%;
+    height: 25rem;
     object-fit: cover;
   }
 
@@ -31,7 +31,7 @@
 
   .category-actions {
     position: absolute;
-    bottom: 100px;
+    bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
     display: none;

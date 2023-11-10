@@ -54,14 +54,22 @@ console.log(state)
                             </div>
                             <div className="col-md-6">
                                 <div className="card-body">
+                                    <div className="d-flex justify-content-between">
                                     <h5 className="card-title">{product.title}</h5>
+                                    <i className="bi bi-heart text-danger"></i>
+                                    </div>
+                                    <p className="card-text"><small className="text-body-secondary">{product.category.name}</small></p>
+                                    
                                     <p className="card-text">{product.description}</p>
 
                                     <h1 className="">${product.price}</h1>
-                                    <p className="card-text"><small className="text-body-secondary">{product.category.name}</small></p>
+                                    
+                                    <div className="d-flex justify-content-between">
+                                    <Link className="btn btn-link" to={`/products/${product.id}`}>Mas detalles</Link>
                                     <button className="btn btn-primary">Lo Quiero</button>
-                                    <Link className="btn btn-link" to={`/products/${product.id}`}>Mas info</Link>
-                                    <i className="bi bi-heart text-danger"></i>
+                                    </div>
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
