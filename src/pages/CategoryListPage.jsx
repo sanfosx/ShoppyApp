@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useQuery } from 'react-query';
 import { PlatziAPI, useCreateData } from '../../src/data/ApiPlatzi';
 import AddCategoryModal from '../components/Modals/AddCategoryModal';
+import '../css/Category.css'
 
 
 
@@ -13,19 +14,19 @@ const CategoryListPage = () => {
 
     const { data, isLoading, isError, error, refetch } = useQuery('categories', () => PlatziAPI('categories'));
 
-    
-    
-    //CREATE
-const createCategoryMutation = useCreateData();
-const handleCreateCategory = async (newCategory) => {
- 
-  console.log('que tiene newdata', newCategory)
-  await createCategoryMutation.mutateAsync(newCategory); // Usar mutacion asincrona
 
-  // Después de eliminar, volver a cargar los datos
-  refetch();
- 
-};
+
+    //CREATE
+    const createCategoryMutation = useCreateData();
+    const handleCreateCategory = async (newCategory) => {
+
+        console.log('que tiene newdata', newCategory)
+        await createCategoryMutation.mutateAsync(newCategory); // Usar mutacion asincrona
+
+        // Después de eliminar, volver a cargar los datos
+        refetch();
+
+    };
 
 
     //CARGA
@@ -45,31 +46,51 @@ const handleCreateCategory = async (newCategory) => {
             </div>
             <div className='d-flex flex-wrap align-content-center justify-content-center'>
                 {data?.map((category) => (
-                    <Link to={`/categorias/${category.id}`} state={{ categoryName: category.name}} key={category.id}>
-                        <div className=" d-flex card text-bg-dark g-col-4 m-2" style={{ width: '20rem' }} >
-
-                            <img src={category.image} className="card-img" alt="..." />
-                            <div className="card-img-overlay">
-                                <h5 className="card-title">{category.name}</h5>
-
+                    <Link to={`/categorias/${category.id}`} state={{ categoryName: category.name }} key={category.id}>
+                        <div className="container mt-5">
+                            <div className="row">
+                                <div className="col-lg-4">
+                                    <div className="card category-card">
+                                        <div className="category-background"></div>
+                                        <img src={category.image} alt="Category Image" className="card-img-top category-image" />
+                                        <div className="category-details">
+                                            <h2 className="card-title">{category.name}</h2>
+                                        </div>
+                                        <div className="category-actions">
+                                            <button type="button" className="btn btn-light mx-1">
+                                                <i className="bi bi-pencil"></i>
+                                            </button>
+                                            <button type="button" className="btn btn-danger mx-1">
+                                                <i className="bi bi-trash"></i>
+                                            </button>
+                                            <button type="button" className="btn btn-dark mx-1">
+                                                <i className="bi bi-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
                     </Link>
 
                 ))}
 
-            </div>
-
-            {/*MODAL */}
-            <AddCategoryModal
-                show={showModal}
-                onHide={() => setShowModal(false)}
-                onAddCategory={handleCreateCategory}
-            />
-
-
         </div>
+
+            {/*MODAL */ }
+    <AddCategoryModal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        onAddCategory={handleCreateCategory}
+    />
+
+
+
+
+
+
+
+        </div >
     );
 }
 

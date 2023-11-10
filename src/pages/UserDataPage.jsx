@@ -1,12 +1,9 @@
-
+import '../css/Category.css'
 
 const UserDataPage = () => {
-  return (
-    <div>
+    return (
         <h1>Mis datos</h1>
-      
-    </div>
-  )
+    )
 }
 
 export default UserDataPage

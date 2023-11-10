@@ -1,0 +1,54 @@
+
+
+.category-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+    width: 18rem;
+    height: 25rem;
+  }
+
+  .category-card:hover {
+    transform: scale(1.1);
+    
+  }
+
+  .category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .category-details {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  }
+
+  .category-actions {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+  }
+
+  .category-card:hover .category-actions {
+    display: flex;
+  }
+
+   /* Fondo con desenfoque y gradiente */
+   .category-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(106, 5, 114, 0.3); /* Cambia el valor alpha (0.5) para ajustar la transparencia */
+    filter: blur(10px);
+    z-index: 0;
+  }
