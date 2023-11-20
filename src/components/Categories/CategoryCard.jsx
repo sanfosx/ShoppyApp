@@ -14,6 +14,7 @@ const CategoryCard = ( {category} ) => {
             <div className="category-details">
               {/*eslint-disable-next-line react/prop-types*/}
               <Link className="card-text text-light p-3" to={`/categorias/${category.id}`} state={ {categoryName: category.name}}>
+                {/*eslint-disable-next-line react/prop-types*/}
               <h1 className="card-title">{category.name}</h1>
               </Link>
             </div>

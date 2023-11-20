@@ -1,7 +1,23 @@
 import logoShoppyApp from '../../assets/logoShoppyApp.svg'
 
-import {Link} from 'react-router-dom'
+import useAuth from '../../hooks/useAuth'
+import {Link, useNavigate} from 'react-router-dom'
+
+
 const Navbar = () => {
+  let navigate= useNavigate()
+  let auth = useAuth();
+
+
+const cerrarSesion = () =>{
+
+  auth.signout(()=>{
+    navigate("/login")
+  })
+}
+
+console.log(auth.userProfile) 
+
   return (
   
  
@@ -26,18 +42,22 @@ const Navbar = () => {
        <input type="search" className="form-control" placeholder="buscar..." aria-label="Search"/>
      </form>
  
-     <div className="dropdown text-end">
-       <a href="#" className="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-         <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle"/>
-       </a>
-       <ul className="dropdown-menu text-small">
-         <li><Link className="dropdown-item" to="./userdata">Mis datos</Link></li>
-         <li><Link className="dropdown-item" to="./favoritos">Favoritos</Link></li>
-         <li><Link className="dropdown-item" to="./compras">Compras</Link></li>
-         <li><hr className="dropdown-divider"/></li>
-         <li><a className="dropdown-item" href="#">Cerrar sesion</a></li>
-       </ul>
-     </div>
+    {auth.isLoggedIn
+    ? <div className="dropdown text-end">
+    <a href="#" className="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle"/>
+    </a>
+    <ul className="dropdown-menu text-small">
+      <li className="text-center">{auth.userProfile.name}</li>
+      <li><Link className="dropdown-item" to="./userdata">Mis datos</Link></li>
+      <li><Link className="dropdown-item" to="./favoritos">Favoritos</Link></li>
+      <li><Link className="dropdown-item" to="./compras">Compras</Link></li>
+      <li><hr className="dropdown-divider"/></li>
+      <li><a className="dropdown-item" href="#" onClick={cerrarSesion}>Cerrar sesion</a></li>
+    </ul>
+  </div>
+  : <Link className="btn btn-dark"  to="/login">Login</Link>}
+     
    </div>
  </div>
  

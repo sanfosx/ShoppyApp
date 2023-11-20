@@ -13,10 +13,12 @@ import CataloguePage from './pages/CataloguePage'
 import UserFavoritePage from './pages/UserFavoritePage'
 import UserShoppingPage from './pages/UserShoppingPage'
 import UserDataPage from './pages/UserDataPage'
+import AuthProvider from './contexts/AuthContext'
 
 function App() {
 
   return (
+    <AuthProvider>
     <Routes>
        <Route path="/" element={<LandingPage />}></Route>
        <Route path="/login" element={<LoginPage />}></Route>
@@ -34,6 +36,7 @@ function App() {
         <Route path="/about" element={<AboutPage />}></Route>
       </Route>
     </Routes>
+    </AuthProvider>
   )
 }
 export default App
