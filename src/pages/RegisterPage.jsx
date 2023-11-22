@@ -39,10 +39,10 @@ const RegisterPage = () => {
     const handleRegister = async (event) => {
         event.preventDefault();
         let formData = new FormData(event.currentTarget);
-        let email = formData.get("email").toString();
+        let email = formData.get('email').toString();
         let password = formData.get('password').toString();
         let name = formData.get('name').toString();
-        let avatar = 'https://api.lorem.space/image/face?w=640&h=480&r=867'
+        let avatar = formData.get('avatar').toString() //?formData.get(avatar).toString():'https://api.lorem.space/image/face?w=640&h=480&r=867'
     
         let newUser = { name, email, password, avatar }
     
@@ -71,6 +71,11 @@ const RegisterPage = () => {
                     <div className="form-floating ">
                         <input type="email" name="email" className="form-control rounded-4" id="floatingInput" placeholder="name@example.com" />
                         <label htmlFor="floatingInput">Email</label>
+                    </div>
+
+                    <div className="form-floating ">
+                        <input type="text" name="avatar" className="form-control rounded-4" id="floatingInput" placeholder="name@example.com" />
+                        <label htmlFor="floatingInput">Link Avatar (opcional)</label>
                     </div>
                     <div className="form-floating">
                         <input type="password" name="password" className="form-control rounded-4" id="floatingPassword" placeholder="Password" />
