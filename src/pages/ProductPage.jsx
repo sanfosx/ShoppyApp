@@ -31,13 +31,13 @@ const ProductPage = () => {
                         <button className="btn btn-dark" onClick={() => navigate(-1)}>Volver atras</button>
                         </row>
                 </Card.Title>
-                <CardBody>
+                <CardBody>  
                     
                     <div className='d-flex '>
 
-                        <CardImg  className="m-1" src= {data.images[0]} style={{ width: '50%' }}></CardImg>
+                        <CardImg  className="m-1" src= {data.images[0]} style={{ width: '50%' , height:'500px', maxHeight: '550px', overflow: 'hidden'}}></CardImg>
                         <CardText className="d-flex flex-column m-1" style={{ width: '50%' }}>
-                            <Card> 
+                            <Card style={{backgroundColor: '#f2f2f2', height:'500px', padding: '1rem'}}> 
                             <row>  
                             <h1>{data.title}</h1> 
                             <Stack direction="horizontal" gap={2}>
@@ -46,8 +46,10 @@ const ProductPage = () => {
                             <h2 className='text-right'>Price: </h2>
                             <h2>$ {data.price}</h2>
                             </row>
+                            <div style= {{height:'500px'}}>
                             <h3>Descriptions:</h3>
                             <h4>{data.description}</h4>
+                            </div>
                             <button className="btn btn-primary">Lo Quiero</button>
                             </Card> 
 
