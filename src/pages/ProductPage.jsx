@@ -23,14 +23,14 @@ const ProductPage = () => {
 
     return (
         <div className='container-content'>
-
-            {data ?
-                <Card className="ml-auto mt-2" >
-                <Card.Title className="m-2">
+                        <div className="ml-auto mt-2">
                         <row className="d-flex justify-content-end ">
                         <button className="btn btn-dark" onClick={() => navigate(-1)}>Volver atras</button>
                         </row>
-                </Card.Title>
+                        </div>
+
+            {data ?
+                <Card className="ml-auto mt-2" >
                 <CardBody>  
                     
                     <div className='d-flex '>
@@ -43,14 +43,14 @@ const ProductPage = () => {
                             <Stack direction="horizontal" gap={2}>
                             <Badge bg="info" text="dark">{data.category.name}</Badge>
                             </Stack>
-                            <h2 className='text-right'>Price: </h2>
-                            <h2>$ {data.price}</h2>
+                            <h2 className='text-right'>$ {data.price}</h2>
+
                             </row>
                             <div style= {{height:'500px'}}>
-                            <h3>Descriptions:</h3>
+                            <h3>Descripción:</h3>
                             <h4>{data.description}</h4>
                             </div>
-                            <button className="btn btn-primary">Lo Quiero</button>
+                            <button className="btn btn-primary">Lo Quiero!</button>
                             </Card> 
 
                         </CardText>

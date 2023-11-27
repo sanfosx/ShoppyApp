@@ -14,15 +14,17 @@ import UserFavoritePage from './pages/UserFavoritePage'
 import UserShoppingPage from './pages/UserShoppingPage'
 import UserDataPage from './pages/UserDataPage'
 
+
 function App() {
 
   return (
+
     <Routes>
        <Route path="/" element={<LandingPage />}></Route>
        <Route path="/login" element={<LoginPage />}></Route>
        <Route path="/register" element={<RegisterPage />}></Route>
        <Route path="/forgotpassword" element={<ForgotPasswordPage />}></Route>
-      <Route element={<LayoutPage />} >
+        <Route element={<LayoutPage />} >
         <Route path="/categorias" element={<CategoryListPage />}></Route>
         <Route path="/categorias/:id" element={<CategoryPage />}></Route>
         <Route path="/catalogo" element={<CataloguePage />}></Route>
@@ -34,6 +36,8 @@ function App() {
         <Route path="/about" element={<AboutPage />}></Route>
       </Route>
     </Routes>
+
+
   )
 }
 export default App

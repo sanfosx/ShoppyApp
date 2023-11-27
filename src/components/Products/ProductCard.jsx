@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom'
 import '../../css/Product.css'
+import { useCart } from '../Cart/usecart'
 
 const ProductCard = ({ product }) => {
 
@@ -28,7 +29,7 @@ const ProductCard = ({ product }) => {
 
             <div className="d-flex justify-content-between">
               <Link className="btn btn-link" to={`/products/${product.id}`}>Mas detalles</Link>
-              <button className="btn btn-primary">Lo Quiero</button>
+              <button className="btn btn-primary" onClick={() => addToCart(product)}>Lo Quiero</button>
             </div>
 
           </div>
