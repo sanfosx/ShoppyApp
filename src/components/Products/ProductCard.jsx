@@ -1,16 +1,16 @@
 
 import { Link } from 'react-router-dom'
 import '../../css/Product.css'
+import ImageComponent from '../ImgeComponent/ImageComponent'
 
 const ProductCard = ({ product }) => {
-
-
 
   return (
     <div className=" m-3  product-card" key={product.id}>
       <div className="row g-0">
         <div className="col-md-6">
-          <img src={product.images[0]} className="img-fluid rounded m-2 product-image" alt="..." />
+          <ImageComponent url={product.images[0]} className="img-fluid rounded m-2 product-image"/>
+        
         </div>
         <div className="col-md-6">
           <div className="card-body d-flex flex-column justify-content-around product-card-body mx-3 px-2 py-4 my-3">

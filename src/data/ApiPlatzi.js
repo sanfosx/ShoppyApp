@@ -2,7 +2,21 @@ import axios from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
 const API_BASE_URL = 'https://api.escuelajs.co/api/v1/'; // Reemplaza con la URL de tu API
 
-export const useDeleteData = () => {
+export const useDeleteCategory = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    (url) => axios.delete(`${API_BASE_URL + url}`),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('categories'); // Invalida la caché para actualizar los datos
+      },
+    }
+  );
+};
+
+
+//Delete product
+export const useDeleteProduct = () => {
   const queryClient = useQueryClient();
   return useMutation(
     (url) => axios.delete(`${API_BASE_URL + url}`),
@@ -13,6 +27,7 @@ export const useDeleteData = () => {
     }
   );
 };
+
 //Crear Categoria
 export const useCreateData = () => {
   const queryClient = useQueryClient();

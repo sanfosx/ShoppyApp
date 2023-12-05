@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom'
+
 import { useState } from 'react'
 import { useQuery } from 'react-query';
 import { PlatziAPI, useCreateData } from '../../src/data/ApiPlatzi';

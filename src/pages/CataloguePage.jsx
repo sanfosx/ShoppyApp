@@ -1,13 +1,13 @@
 import {PlatziAPI} from '../../src/data/ApiPlatzi';
 import { Link } from 'react-router-dom'
-import { useDeleteData } from '../../src/data/ApiPlatzi';
+
 import { useQuery } from 'react-query';
 
 const CataloguePage = () => {
   
-  const { data, isLoading, isError, error, refetch } = useQuery('products', () => PlatziAPI('products', 10, 10));
+  const { data, isLoading, isError, error } = useQuery('products', () => PlatziAPI('products', 10, 10));
 
-  const deleteProductMutation = useDeleteData();
+ /* const deleteProductMutation = useDeleteData();
 
 
   // eslint-disable-next-line no-unused-vars
@@ -16,7 +16,7 @@ const CataloguePage = () => {
 
     // Después de eliminar, volver a cargar los datos
     refetch();
-  };
+  };*/
 
   if (isLoading) {
     return <div>Cargando...</div>;
