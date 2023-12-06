@@ -1,12 +1,29 @@
-
+import React from "react";
+import UserImage from "../components/UserImage";
 
 const AboutPage = () => {
-  return (
-    <div>
-      <h1>About Page</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel voluptatum ab culpa animi, magni ex aliquid, voluptates, nesciunt quae dolor molestiae assumenda? Ex laudantium in sapiente aut dignissimos. Nam, dolorum.</h1>
-    </div>
-  )
-}
+  const containerStyle = {
+    textAlign: "center",
+    padding: "20px",
+    backgroundColor: "#f0f0f0",
+    borderRadius: "10px",
+    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+    maxWidth: "80%",
+    margin: "auto",
+  };
 
-export default AboutPage
+  const headingStyle = {
+    fontSize: "24px",
+    marginBottom: "10px",
+    fontFamily: "inherit"
+  };
+
+  return (
+    <div style={containerStyle}>
+      <h1 style={headingStyle}>Integrantes</h1>
+      <UserImage />
+    </div>
+  );
+};
+
+export default AboutPage;
