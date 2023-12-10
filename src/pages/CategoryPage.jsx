@@ -5,11 +5,7 @@ import { PlatziAPI, useCreateProduct } from '../../src/data/ApiPlatzi';
 import AddProductModal from '../components/Modals/AddProductModal';
 import ImageComponent from '../components/ImgeComponent/ImageComponent';
 
-
-
 const CategoryPage = () => {
-
-
     const [showProductModal, setShowProductModal] = useState(false);
     const navigate = useNavigate()
     const { id } = useParams()
@@ -26,7 +22,6 @@ const CategoryPage = () => {
 
         // Después de eliminar, volver a cargar los datos
         refetch();
-
     };
 
 

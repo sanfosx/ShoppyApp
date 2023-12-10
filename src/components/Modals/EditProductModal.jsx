@@ -2,24 +2,24 @@ import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 // eslint-disable-next-line react/prop-types
-const EditCategoryModal = ({ show, onHide, onEditCategory, category }) => {
-    const [productName, setCategoryName] = useState(category.name);
-    const [productImage, setCategoryImage] = useState(category.image);
+const EditProductModal = ({ show, onHide, onEditProduct, product }) => {
+    const [productName, setProductName] = useState(product.title);
+    const [productImage, setProductImage] = useState(product.image);
 
-    const handleEditCategory = () => {
-        const updateCategory = {
+    const handleEditProduct = () => {
+        const updateProduct = {
             name: productName,
             image: productImage,
         };
 
-        onEditCategory(category.Id, updateCategory);
+        onEditProduct(product.id, updateProduct);
         onHide();
     };
 
     return (
         <Modal show={show} onHide={onHide}>
             <Modal.Header closeButton>
-                <Modal.Title>Editar Categoria</Modal.Title>
+                <Modal.Title>Editar Producto</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -29,7 +29,7 @@ const EditCategoryModal = ({ show, onHide, onEditCategory, category }) => {
                             type="text"
                             placeholder="Ingrese el nombre de la categoria"
                             value={productName}
-                            onChange={(e) => setCategoryName(e.target.value)}
+                            onChange={(e) => setProductName(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group controlId="categoryImage">
@@ -38,7 +38,7 @@ const EditCategoryModal = ({ show, onHide, onEditCategory, category }) => {
                             type="text"
                             placeholder="Ingrese la URL de la imagen"
                             value={productImage}
-                            onChange={(e) => setCategoryImage(e.target.value)}
+                            onChange={(e) => setProductImage(e.target.value)}
                         />
                     </Form.Group>
                 </Form>
@@ -47,7 +47,7 @@ const EditCategoryModal = ({ show, onHide, onEditCategory, category }) => {
                 <Button variant="light" onClick={onHide}>
                     Cerrar
                 </Button>
-                <Button variant="dark" onClick={handleEditCategory}>
+                <Button variant="dark" onClick={handleEditProduct}>
                     Guardar
                 </Button>
             </Modal.Footer>
@@ -55,4 +55,4 @@ const EditCategoryModal = ({ show, onHide, onEditCategory, category }) => {
     );
 };
 
-export default EditCategoryModal;
+export default EditProductModal;
