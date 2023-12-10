@@ -44,7 +44,7 @@ console.log(auth.userProfile)
  
     {auth.isLoggedIn
     ? <div className="dropdown text-end">
-    <a href="#" className="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <a className="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       {auth.userProfile.avatar
       ?<img src={auth.userProfile.avatar} alt="mdo" width="32" height="32" className="rounded-circle"/>
     :<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle"/>
@@ -56,7 +56,7 @@ console.log(auth.userProfile)
       <li><Link className="dropdown-item" to="./favoritos">Favoritos</Link></li>
       <li><Link className="dropdown-item" to="./compras">Compras</Link></li>
       <li><hr className="dropdown-divider"/></li>
-      <li><a className="dropdown-item" href="#" onClick={cerrarSesion}>Cerrar sesion</a></li>
+      <li><a className="dropdown-item" onClick={cerrarSesion}>Cerrar sesion</a></li>
     </ul>
   </div>
   : <Link className="btn btn-dark"  to="/login">Login</Link>}
