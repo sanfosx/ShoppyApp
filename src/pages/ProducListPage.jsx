@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import  AddProductModal  from '../components/Modals/AddProductModal';
 import { useQuery } from 'react-query';
-import { PlatziAPI, useCreateProduct, useDeleteData } from '../../src/data/ApiPlatzi';
+import { PlatziAPI, useCreateProduct } from '../../src/data/ApiPlatzi';
 import ProductCard from '../components/Products/ProductCard';
 
 
@@ -30,7 +30,7 @@ const ProductListPage = () => {
 
 
 
-  const deleteProductMutation = useDeleteData();
+ /* const deleteProductMutation = useDeleteData();
 
   // eslint-disable-next-line no-unused-vars
   const handleDeleteProduct = async (productId) => {
@@ -38,7 +38,7 @@ const ProductListPage = () => {
 
     // Después de eliminar, volver a cargar los datos
     refetch();
-  };
+  };*/
 
   if (isLoading) {
     return <div>Cargando...</div>;

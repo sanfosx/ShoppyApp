@@ -45,7 +45,10 @@ console.log(auth.userProfile)
     {auth.isLoggedIn
     ? <div className="dropdown text-end">
     <a href="#" className="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle"/>
+      {auth.userProfile.avatar
+      ?<img src={auth.userProfile.avatar} alt="mdo" width="32" height="32" className="rounded-circle"/>
+    :<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle"/>
+    }
     </a>
     <ul className="dropdown-menu text-small">
       <li className="text-center">{auth.userProfile.name}</li>

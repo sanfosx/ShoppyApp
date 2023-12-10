@@ -3,19 +3,16 @@ import { Link, useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useQuery } from 'react-query';
 import { PlatziAPI, useCreateProduct } from '../../src/data/ApiPlatzi';
 import AddProductModal from '../components/Modals/AddProductModal';
-
-
+import ImageComponent from '../components/ImgeComponent/ImageComponent';
 
 const CategoryPage = () => {
-
-    
     const [showProductModal, setShowProductModal] = useState(false);
     const navigate = useNavigate()
     const { id } = useParams()
     const { data, isLoading, isError, error, refetch } = useQuery('CategoriesProducts', () => PlatziAPI(`categories/${id}/products`));
     const { state } = useLocation()
-   
-console.log(state)
+
+    console.log(state)
     //CREATE
     const createCategoryMutation = useCreateProduct();
     const handleCreateProduct = async (newProduct) => {
@@ -25,7 +22,6 @@ console.log(state)
 
         // Después de eliminar, volver a cargar los datos
         refetch();
-
     };
 
 
@@ -49,27 +45,31 @@ console.log(state)
                 {data?.map((product) => (
                     <div className="card m-2" style={{ maxWidth: '600px' }} key={product.id}>
                         <div className="row g-0">
-                            <div className="col-md-6">
-                                <img src={product.images[0]} className="img-fluid rounded m-2" alt="..." />
+
+                            <div className="col-md-6 ">
+                                <ImageComponent url={product.images[0]} className="img-fluid rounded m-1 product-image" />
+
                             </div>
+
+
                             <div className="col-md-6">
                                 <div className="card-body">
                                     <div className="d-flex justify-content-between">
-                                    <h5 className="card-title">{product.title}</h5>
-                                    <i className="bi bi-heart text-danger"></i>
+                                        <h5 className="card-title">{product.title}</h5>
+                                        <i className="bi bi-heart text-danger"></i>
                                     </div>
                                     <p className="card-text"><small className="text-body-secondary">{product.category.name}</small></p>
-                                    
+
                                     <p className="card-text">{product.description}</p>
 
                                     <h1 className="">${product.price}</h1>
-                                    
+
                                     <div className="d-flex justify-content-between">
-                                    <Link className="btn btn-link" to={`/products/${product.id}`}>Mas detalles</Link>
-                                    <button className="btn btn-primary">Lo Quiero</button>
+                                        <Link className="btn btn-link" to={`/products/${product.id}`}>Mas detalles</Link>
+                                        <button className="btn btn-primary">Lo Quiero</button>
                                     </div>
-                                    
-                                    
+
+
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@ console.log(state)
                 show={showProductModal}
                 onHide={() => setShowProductModal(false)}
                 onAddProduct={handleCreateProduct}
-                />
+            />
 
         </div>
     );
