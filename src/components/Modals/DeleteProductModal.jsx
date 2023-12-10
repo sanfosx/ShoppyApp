@@ -6,7 +6,7 @@ import { PlatziAPI } from '../../data/ApiPlatzi';
 // eslint-disable-next-line react/prop-types
 const DeleteProductModal = ({ show, onHide, onDeleteProduct, productId }) => {
    
-console.log(productId)
+//console.log(productId)
    //ELIMINAR
   const deleteProductMutation = useDeleteProduct();
   const { refetch } = useQuery('Products', () => PlatziAPI('products'));

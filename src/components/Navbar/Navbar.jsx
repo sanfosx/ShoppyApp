@@ -16,7 +16,7 @@ const cerrarSesion = () =>{
   })
 }
 
-console.log(auth.userProfile) 
+//console.log(auth.userProfile) 
 
   return (
   

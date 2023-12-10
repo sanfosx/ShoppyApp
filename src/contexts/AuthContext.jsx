@@ -8,11 +8,15 @@ function AuthProvider({ children }) {
   let [isLoggedIn, setIsLoggedIn] = useState(false);
   let [user, setUser] = useState(null);
   let [userProfile, setUserProfile] = useState(null);
+  let [favorites, setFavorites] = useState([])
 
   let signin = (newUser, callback) => {
 
     setUser(newUser);
     setUserProfile(fetchProfile(newUser));
+    // Cargar favoritos desde localStorage al iniciar sesión
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(storedFavorites);
     localStorage.setItem('ACCESS_TOKEN', user)
     localStorage.setItem('USER_PROFILE', JSON.stringify(userProfile))
     setIsLoggedIn(true);
@@ -31,9 +35,22 @@ function AuthProvider({ children }) {
     return callback();
 
   };
+  const addFavorite = (favorite) => {
+    const updatedFavorites = [...favorites, favorite];
+    setFavorites(updatedFavorites);
+    // Guardar favoritos en localStorage
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
+
+  const removeFavorite = (favoriteId) => {
+    const updatedFavorites = favorites.filter((favorite) => favorite.id !== favoriteId);
+    setFavorites(updatedFavorites);
+    // Actualizar favoritos en localStorage
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
 
   console.log(userProfile)
-  let value = { user, signin, signout, userProfile, isLoggedIn };
+  let value = { user, signin, signout, userProfile, isLoggedIn, favorites, addFavorite, removeFavorite };
 
 
 

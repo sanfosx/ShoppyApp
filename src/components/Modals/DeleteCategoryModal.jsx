@@ -4,7 +4,7 @@ import { useDeleteCategory } from '../../data/ApiPlatzi';
 // eslint-disable-next-line react/prop-types
 const DeleteCategoryModal = ({ show, onHide, onDeleteCategory, categoryId }) => {
    
-console.log(categoryId)
+//console.log(categoryId)
    //ELIMINAR
   const deleteCategoryMutation = useDeleteCategory();
   
