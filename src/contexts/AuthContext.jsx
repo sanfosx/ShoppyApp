@@ -1,6 +1,5 @@
 
 import { useEffect, useState, createContext } from "react";
-
 export let AuthContext = createContext(null);
 
 // eslint-disable-next-line react/prop-types
@@ -8,14 +7,18 @@ function AuthProvider({ children }) {
   let [isLoggedIn, setIsLoggedIn] = useState(false);
   let [user, setUser] = useState(null);
   let [userProfile, setUserProfile] = useState(null);
+  let [cart, setCart]= useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [])
   let [favorites, setFavorites] = useState(localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [])
 
+  //cuando inicia sesion
   let signin = (newUser, callback) => {
 
     setUser(newUser);
     setUserProfile(fetchProfile(newUser));
     // Cargar favoritos desde localStorage al iniciar sesión
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCart(storedCart)
     setFavorites(storedFavorites);
     localStorage.setItem('ACCESS_TOKEN', user)
     localStorage.setItem('USER_PROFILE', JSON.stringify(userProfile))
@@ -25,16 +28,19 @@ function AuthProvider({ children }) {
     return callback();
 
   };
-
+//cuando cierra sesion se borran todos los datos
   let signout = (callback) => {
     localStorage.removeItem('ACCESS_TOKEN')
     localStorage.removeItem('USER_PROFILE')
+    localStorage.removeItem("favorites")
     setUser(null)
     setIsLoggedIn(false);
 
     return callback();
 
   };
+
+  //FAVORITOS
   const addFavorite = (favorite) => {
     const updatedFavorites = [...favorites, favorite];
     setFavorites(updatedFavorites);
@@ -49,24 +55,27 @@ function AuthProvider({ children }) {
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
+  //CARRITO
+  const addToCart = (itemCart) => {
+    const updatedCart = [...cart, itemCart];
+    setCart(updatedCart);
+    // Guardar favoritos en localStorage
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  };
+
+  const removeToCart = (itemCartId) => {
+    const updatedCart = cart.filter((itemCart) => itemCart.id !== itemCartId);
+    setCart(updatedCart);
+    // Actualizar favoritos en localStorage
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  };
+
+
+
   console.log(userProfile)
-  let value = { user, signin, signout, userProfile, isLoggedIn, favorites, addFavorite, removeFavorite };
+  let value = { user, signin, signout, userProfile, isLoggedIn, favorites, addFavorite, removeFavorite, cart, addToCart, removeToCart };
 
-
-
-  useEffect(() => {
-    const storedAccessToken = localStorage.getItem('ACCESS_TOKEN');
-    const storedUserProfile = localStorage.getItem('USER_PROFILE');
-
-    console.log('leeeee', storedAccessToken, storedUserProfile)
-    if (storedAccessToken && storedUserProfile) {
-      setUser(storedAccessToken);
-      setUserProfile(JSON.parse(storedUserProfile))
-      setIsLoggedIn(true);
-    }
-  }, []);
-
-
+//leer los datos de usuario de la api
   const fetchProfile = async () => {
     if (user) {
       console.log("q tiene user",user)
@@ -90,9 +99,21 @@ function AuthProvider({ children }) {
   };
 
   useEffect(() => {
+    const storedAccessToken = localStorage.getItem('ACCESS_TOKEN');
+    const storedUserProfile = localStorage.getItem('USER_PROFILE');
 
+    console.log('leeeee', storedAccessToken, storedUserProfile)
+    if (storedAccessToken && storedUserProfile) {
+      setUser(storedAccessToken);
+      setUserProfile(JSON.parse(storedUserProfile))
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  useEffect(() => {
 
     fetchProfile();
+
   }, [user]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

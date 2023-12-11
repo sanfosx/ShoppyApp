@@ -7,16 +7,38 @@ import DeleteProductModal from '../Modals/DeleteProductModal'
 import EditProductModal from '../Modals/EditProductModal'
 import { useEditProduct, useDeleteProduct } from '../../data/ApiPlatzi'
 import  useAuth  from '../../hooks/useAuth'
+import ShoppingCartModal from '../Modals/ShoppingCartModal'
+
 const ProductCard = ({ product }) => {
 
-  const { user, favorites, addFavorite, removeFavorite } = useAuth();
+  const { user, favorites, addFavorite, removeFavorite, cart, addToCart, removeToCart } = useAuth();
   const [toggleFavorite, setToggleFavorite] = useState()
+  const [toggleCart, setToggleCart] = useState()
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  console.log("Q tiene favoritossss",favorites)
-  
+  const [showCartModal, setShowCartModal] = useState(false);
 
   const isFavorite = (productId) => favorites.some((fav) => fav.id === productId);
+  const isCart = (productId) => cart.some((item) => item.id === productId)
+
+  const handleToggleCart = (productId) => {
+    if (isCart(productId)) {
+      removeToCart(productId);
+      setToggleCart(false)
+    } else {
+      addToCart({ 
+        id: productId,
+        title: product.title,
+        price: product.price,
+        images: product.images,
+        description: product.description,
+        category: product.category,
+        cant: 1
+
+         /* otras propiedades del producto */ });
+      setToggleCart(true)
+    }
+  };
 
   const handleToggleFavorite = (productId) => {
     if (isFavorite(productId)) {
@@ -107,7 +129,15 @@ const ProductCard = ({ product }) => {
 
             <div className="d-flex justify-content-between">
               <Link className="btn btn-link" to={`/products/${product.id}`}>Mas detalles</Link>
-              <button className="btn btn-primary">Lo Quiero</button>
+
+               {/* Muestra el icono de corazón */isCart(product.id)}
+               {toggleCart? (
+                
+                <button className={isCart(product.id)? "btn btn-danger":"btn btn-primary" } onClick={() => handleToggleCart(product.id)}>Ya NO Lo Quiero :(</button>
+              ) : (
+                <button className={isCart(product.id)? "btn btn-danger":"btn btn-primary"}  onClick={() => handleToggleCart(product.id)}>{isCart(product.id)?"Ya NO Lo Quiero :(":"Lo Quiero"}</button>
+              )}
+             
             </div>
 
           </div>
@@ -115,6 +145,14 @@ const ProductCard = ({ product }) => {
       </div>
 
       {/*MODAL */}
+
+      <ShoppingCartModal
+      show={showCartModal}
+      onHide={() => setShowCartModal(false)}
+      
+      
+      />
+      
 
       <DeleteProductModal
         show={showDeleteModal}
