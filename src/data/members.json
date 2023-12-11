@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Victor Andrés Bianchi Núñez",
+    "description": "Alumno.",
+    "image": "sinImagen.png",
+    "cellPhone": "",
+    "mail": ""
+  },
+  {
+    "id": 2,
+    "name": "Iván Bustos",
+    "description": "Alumno.",
+    "image": "sinImagen.png",
+    "cellPhone": "",
+    "mail": ""
+  },
+  {
+    "id": 3,
+    "name": "Martín Alejandro Caro",
+    "description": "Alumno.",
+    "image": "sinImagen.png",
+    "cellPhone": "",
+    "mail": ""
+  },
+  {
+    "id": 4,
+    "name": "Luciano Costantini",
+    "description": "Alumno.",
+    "image": "sinImagen.png",
+    "cellPhone": "",
+    "mail": ""
+  },
+  {
+    "id": 5,
+    "name": "Santiago Saul Foschiatti",
+    "description": "Alumno.",
+    "image": "sinImagen.png",
+    "cellPhone": "",
+    "mail": ""
+  },
+  {
+    "id": 6,
+    "name": "Joaquin Frattin",
+    "description": "Alumno.",
+    "image": "sinImagen.png",
+    "cellPhone": "",
+    "mail": ""
+  },
+  {
+    "id": 7,
+    "name": "Alvaro Alejandro Guiffrey",
+    "description": "Alumno. Programador PHP, Python, JS.",
+    "image": "alvaroGuiffrey.jpg",
+    "cellPhone": "03447 15491836",
+    "mail": "alvaroguiffrey@gmail.com"
+  },
+  {
+    "id": 8,
+    "name": "Julian Meier",
+    "description": "Alumno.",
+    "image": "sinImagen.png",
+    "cellPhone": "",
+    "mail": ""
+  },
+  {
+    "id": 9,
+    "name": "Daniel Ernesto Obregon",
+    "description": "Alumno.",
+    "image": "sinImagen.png",
+    "cellPhone": "",
+    "mail": ""
+  },
+  {
+    "id": 10,
+    "name": "Pedro Raul Rios",
+    "description": "Alumno.",
+    "image": "sinImagen.png",
+    "cellPhone": "",
+    "mail": ""
+  },
+  {
+    "id": 11,
+    "name": "Sebastián Rucci",
+    "description": "Alumno.",
+    "image": "sinImagen.png",
+    "cellPhone": "",
+    "mail": ""
+  },
+  {
+    "id": 12,
+    "name": "Facundo Tognola",
+    "description": "Alumno.",
+    "image": "sinImagen.png",
+    "cellPhone": "",
+    "mail": ""
+  }
+]
