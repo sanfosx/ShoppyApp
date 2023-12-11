@@ -1,14 +1,63 @@
 
+import {useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from 'react-query';
 import {PlatziAPI} from '../../src/data/ApiPlatzi';
-import { Card, CardBody, CardImg, CardText, Spinner, Badge , Stack} from 'react-bootstrap';
+import useAuth from '../hooks/useAuth'
+import { Card, CardBody, CardHeader, CardImg, CardText, Col, Row , Spinner, Badge , Stack} from 'react-bootstrap';
 
 const ProductPage = () => {
     const navigate = useNavigate()
     const { id } = useParams()
     const { data, isLoading, isError, error } = useQuery('ProductsDetails', () => PlatziAPI(`products/${id}`));
 
+        
+    const { user, favorites, addFavorite, removeFavorite, cart, addToCart, removeToCart } = useAuth();
+    const [toggleFavorite, setToggleFavorite] = useState()
+    const [toggleCart, setToggleCart] = useState()
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [showCartModal, setShowCartModal] = useState(false);
+
+    const isFavorite = (productId) => favorites.some((fav) => fav.id === productId);
+    const isCart = (productId) => cart.some((item) => item.id === productId)
+
+    const handleToggleCart = (productId) => {
+        if (isCart(productId)) {
+        removeToCart(productId);
+        setToggleCart(false)
+        } else {
+        addToCart({ 
+            id: productId,
+            title: data.title,
+            price: data.price,
+            images: data.images,
+            description: data.description,
+            category: data.category,
+            cant: 1
+
+            /* otras propiedades del producto */ });
+        setToggleCart(true)
+        }
+    };
+
+    const handleToggleFavorite = (productId) => {
+        if (isFavorite(productId)) {
+        removeFavorite(productId);
+        setToggleFavorite(false)
+        } else {
+        addFavorite({ 
+            id: productId,
+            title: data.title,
+            price: data.price,
+            images: data.images,
+            description:data.description,
+            category: data.category,
+
+            /* otras propiedades del producto */ });
+        setToggleFavorite(true)
+        }
+    };
 
 
     if (isLoading) {
@@ -41,7 +90,7 @@ const ProductPage = () => {
                             <div className='d-flex align-items-center'>
                             <h1 className='flex-grow-1'>{data.title}</h1>
 
-                            <i className="bi bi-balloon-heart-fill text-danger fs-3" onClick={console.log("debo agregar a favoritos")/*() => handleToggleFavorite(product.id)*/} />
+                            <i className="bi bi-balloon-heart-fill text-danger fs-3" onClick={() => handleToggleFavorite(product.id)} />
                             </div>
                             <Stack direction="horizontal" gap={2}>
                             <Badge bg="info" text="dark">{data.category.name}</Badge>
@@ -50,7 +99,15 @@ const ProductPage = () => {
                             </row>
                             <h3>Descripción:</h3>
                             <h4 style={{ textAlign: 'justify' }}>{data.description}</h4>
-                            <button className="btn btn-primary mt-auto">Lo Quiero</button>
+                            
+                            {/* Muestra el icono de corazón */isCart(data.id)}
+                            {toggleCart? (
+                                
+                                <button className={isCart(data.id)? "btn btn-danger mt-auto":"btn btn-primary mt-auto" } onClick={() => handleToggleCart(data.id)}>Ya NO Lo Quiero :(</button>
+                            ) : (
+                                <button className={isCart(data.id)? "btn btn-danger mt-auto":"btn btn-primary mt-auto"}  onClick={() => handleToggleCart(data.id)}>{isCart(data.id)?"Ya NO Lo Quiero :(":"Lo Quiero"}</button>
+                            )}
+             
                             </Card> 
 
                         </CardText>
