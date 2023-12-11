@@ -13,7 +13,6 @@ const ProductPage = () => {
 
     if (isLoading) {
         return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}><Spinner animation="border" variant="primary" role="status">
-        <span className="visually-hidden">Loading...</span>
         </Spinner></div>;
     }
 
