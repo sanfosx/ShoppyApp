@@ -7,8 +7,9 @@ import DeleteProductModal from '../Modals/DeleteProductModal'
 import EditProductModal from '../Modals/EditProductModal'
 import { useEditProduct, useDeleteProduct } from '../../data/ApiPlatzi'
 const ProductCard = ({ product }) => {
-
+  const [addItemCart, setItemCart] = useState()
   const [addFavorites, setAddFavorites] = useState()
+  
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -76,7 +77,7 @@ const ProductCard = ({ product }) => {
 
               <div className="d-flex justify-content-between">
                 <Link className="btn btn-link" to={`/products/${product.id}`}>Mas detalles</Link>
-                <button className="btn btn-primary">Lo Quiero</button>
+                <button className="btn btn-primary" onClick={setItemCart(product)}>Lo Quiero</button>
               </div>
 
             </div>
