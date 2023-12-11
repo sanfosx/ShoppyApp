@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
   const [toggleFavorite, setToggleFavorite] = useState()
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-
+  console.log("Q tiene favoritossss",favorites)
   
 
   const isFavorite = (productId) => favorites.some((fav) => fav.id === productId);
@@ -23,7 +23,15 @@ const ProductCard = ({ product }) => {
       removeFavorite(productId);
       setToggleFavorite(false)
     } else {
-      addFavorite({ id: productId, /* otras propiedades del producto */ });
+      addFavorite({ 
+        id: productId,
+        title: product.title,
+        price: product.price,
+        images: product.images,
+        description: product.description,
+        category: product.category,
+
+         /* otras propiedades del producto */ });
       setToggleFavorite(true)
     }
   };
@@ -80,12 +88,12 @@ const ProductCard = ({ product }) => {
             <div className="d-flex justify-content-between">
               <h3 className="card-title">{product.title}</h3>
 
-              {/* Muestra el icono de corazón */}
-              {toggleFavorite ? (
+              {/* Muestra el icono de corazón */isFavorite(product.id)}
+              {toggleFavorite? (
                 
-                <i className="bi bi-balloon-heart-fill text-danger fs-3" onClick={() => handleToggleFavorite(product.id)} />
+                <i className={isFavorite(product.id)? "bi bi-balloon-heart-fill text-danger fs-3": "bi bi-balloon-heart text-danger fs-3"} onClick={() => handleToggleFavorite(product.id)} />
               ) : (
-                <i className="bi bi-balloon-heart text-danger fs-3" onClick={() => handleToggleFavorite(product.id)} />
+                <i className={isFavorite(product.id)? "bi bi-balloon-heart-fill text-danger fs-3": "bi bi-balloon-heart text-danger fs-3"} onClick={() => handleToggleFavorite(product.id)} />
               )}
 
             </div>
@@ -124,7 +132,6 @@ const ProductCard = ({ product }) => {
         product={product}
       />
     </div>
-
 
   )
 }

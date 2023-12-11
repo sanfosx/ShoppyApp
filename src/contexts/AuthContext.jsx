@@ -8,7 +8,7 @@ function AuthProvider({ children }) {
   let [isLoggedIn, setIsLoggedIn] = useState(false);
   let [user, setUser] = useState(null);
   let [userProfile, setUserProfile] = useState(null);
-  let [favorites, setFavorites] = useState([])
+  let [favorites, setFavorites] = useState(localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [])
 
   let signin = (newUser, callback) => {
 

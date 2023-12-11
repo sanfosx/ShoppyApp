@@ -3,8 +3,12 @@ import  AddProductModal  from '../components/Modals/AddProductModal';
 import { useQuery } from 'react-query';
 import { PlatziAPI, useCreateProduct } from '../../src/data/ApiPlatzi';
 import ProductCard from '../components/Products/ProductCard';
+import  useAuth  from '../hooks/useAuth'
 
 const ProductListPage = () => {
+  
+  const { user, favorites, addFavorite, removeFavorite } = useAuth();
+   const isFavorite = (productId) => favorites.some((fav) => fav.id === productId);
 
   const [showProductModal, setShowProductModal] = useState(false);
   const { data, isLoading, isError, error, refetch } = useQuery('Products', () => PlatziAPI('products'));
@@ -36,9 +40,11 @@ const ProductListPage = () => {
         <button className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setShowProductModal(true)}>+ Agregar</button>
       </div>
       <div className="d-flex flex-wrap align-content-center justify-content-center mr-2">
+
         {data?.map((product) => (
           <ProductCard key={product.id} product={product}/>
         ))}
+        
       </div>
 
       {/*MODAL */}
