@@ -1,19 +1,14 @@
-
 import { useState } from 'react';
 import  AddProductModal  from '../components/Modals/AddProductModal';
 import { useQuery } from 'react-query';
 import { PlatziAPI, useCreateProduct } from '../../src/data/ApiPlatzi';
 import ProductCard from '../components/Products/ProductCard';
 
-
-
 const ProductListPage = () => {
 
   const [showProductModal, setShowProductModal] = useState(false);
   const { data, isLoading, isError, error, refetch } = useQuery('Products', () => PlatziAPI('products'));
   
-
-
   //CREATE
   const createCategoryMutation = useCreateProduct();
   const handleCreateProduct = async (newProduct) => {
@@ -23,22 +18,8 @@ const ProductListPage = () => {
 
     // Después de eliminar, volver a cargar los datos
     refetch();
-
   };
 
-
-
-
-
- /* const deleteProductMutation = useDeleteData();
-
-  // eslint-disable-next-line no-unused-vars
-  const handleDeleteProduct = async (productId) => {
-    await deleteProductMutation.mutateAsync(`products/${productId}`); // Usar mutacion asincrona
-
-    // Después de eliminar, volver a cargar los datos
-    refetch();
-  };*/
 
   if (isLoading) {
     return <div>Cargando...</div>;

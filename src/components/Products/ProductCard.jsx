@@ -81,11 +81,10 @@ const ProductCard = ({ product }) => {
               <h3 className="card-title">{product.title}</h3>
 
               {/* Muestra el icono de corazón */}
-              {isFavorite(product.id) ? (
-                setToggleFavorite(true),
+              {toggleFavorite ? (
+                
                 <i className="bi bi-balloon-heart-fill text-danger fs-3" onClick={() => handleToggleFavorite(product.id)} />
               ) : (
-                setToggleFavorite(true),
                 <i className="bi bi-balloon-heart text-danger fs-3" onClick={() => handleToggleFavorite(product.id)} />
               )}
 
