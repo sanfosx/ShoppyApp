@@ -25,7 +25,7 @@ const ProductPage = () => {
         <div className='container-content'>
 
             {data ?
-                <Card className="ml-auto mt-2 " >
+                <Card className="ml-auto mt-2 border-0 bg-light " >
                 <Card.Title className="m-2">
                         <row className="d-flex justify-content-end ">
                         <button className="btn btn-dark" onClick={() => navigate(-1)}>Volver atras</button>
@@ -37,7 +37,7 @@ const ProductPage = () => {
 
                         <CardImg  className="m-1" src={data.images[0]} style={{ width: '50%' , maxHeight: '500px'}}></CardImg>
                         <CardText className="d-flex flex-column m-1" style={{ width: '50%' }}>
-                            <Card className="p-3" style={{ height: '500px',  maxHeight: '500px'}}> 
+                            <Card className="p-3 border-0 " style={{ height: '500px',  maxHeight: '500px'}}> 
                             <row> 
                             <div className='d-flex align-items-center'>
                             <h1 className='flex-grow-1'>{data.title}</h1>
