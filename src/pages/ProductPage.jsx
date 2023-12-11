@@ -2,7 +2,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from 'react-query';
 import {PlatziAPI} from '../../src/data/ApiPlatzi';
-import { Card, CardBody, CardHeader, CardImg, CardText, Col, Row , Spinner, Badge , Stack} from 'react-bootstrap';
+import { Card, CardBody, CardImg, CardText, Spinner, Badge , Stack} from 'react-bootstrap';
 
 const ProductPage = () => {
     const navigate = useNavigate()
@@ -41,7 +41,7 @@ const ProductPage = () => {
                             <div className='d-flex align-items-center'>
                             <h1 className='flex-grow-1'>{data.title}</h1>
 
-                            <i className="bi bi-balloon-heart-fill text-danger fs-3" onClick={() => handleToggleFavorite(product.id)} />
+                            <i className="bi bi-balloon-heart-fill text-danger fs-3" onClick={console.log("debo agregar a favoritos")/*() => handleToggleFavorite(product.id)*/} />
                             </div>
                             <Stack direction="horizontal" gap={2}>
                             <Badge bg="info" text="dark">{data.category.name}</Badge>
