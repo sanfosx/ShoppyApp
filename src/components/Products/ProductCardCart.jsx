@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import '../../css/Product.css'
@@ -9,7 +8,7 @@ import { useEditProduct, useDeleteProduct } from '../../data/ApiPlatzi'
 import  useAuth  from '../../hooks/useAuth'
 import ShoppingCartModal from '../Modals/ShoppingCartModal'
 
-const ProductCard = ({ product }) => {
+const ProductCardCart = ({ product }) => {
 
   const { user, favorites, addFavorite, removeFavorite, cart, addToCart, removeToCart } = useAuth();
   const [toggleFavorite, setToggleFavorite] = useState()
@@ -80,69 +79,39 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className=" m-3  product-card" key={product.id}>
-      <div className="row g-0">
-        <div className="col-md-6">
+    
+    <div className="m-3" key={product.id} >
+        <div className="d-flex flex-columns justify-content-between align-items-center" style={{ width: '100%' , height: '200px'}}>
+            <div className="p-2 align-items-center"  style={{ maxWidth: '300px', minWidth: '300px'}}>
+                <img src={product.images[0]} className="img-fluid p-1" style={{ width: '150px' , height: '100px', borderRadius: '10px'}}/>
+            </div>
+            <div className="p-2 align-items-center"  style={{ maxWidth: '200px', minWidth: '200px'}}>
+                <h2>{product.title}</h2>
+            </div>
+            <div className="p-2 align-items-center"  style={{ maxWidth: '200px', minWidth: '200px'}}>
+                <h2>${product.price}</h2>
+            </div>
 
-
-
-          <div className=" category-card">
-
-            {/*eslint-disable-next-line react/prop-types*/}
-            <ImageComponent url={product.images[0]} className="img-fluid rounded m-2 product-image" />
-
-            <div className="category-actions">
-
-              <button type="button" className="btn btn-light mx-1 rounded-circle">
-                <i className="bi bi-pencil h-100" onClick={() => setShowEditModal(true)}></i>
-              </button>
-              <button onClick={() => setShowDeleteModal(true)} type="button" className="btn btn-danger mx-1 rounded-circle">
-                <i className="bi bi-trash"></i>
-              </button>
+            <div className="p-2 align-items-center d-flex flex-columns"  style={{ maxWidth: '200px', minWidth: '200px'}}>
+              <button className="btn btn-light" onClick={() => handleDecrement(product.id)}>-</button>
+                <h2 className="p-3 m-1">{product.cant}</h2>
+                <button className="btn btn-light" onClick={() => handleIncrement(product.id)}>+</button>
 
             </div>
-          </div>
 
-
-        </div>
-        <div className="col-md-6">
-          <div className="card-body d-flex flex-column justify-content-around product-card-body mx-3 px-2 py-4 my-3">
-            <div className="d-flex justify-content-between">
-              <h3 className="card-title">{product.title}</h3>
-
-              {/* Muestra el icono de corazón */isFavorite(product.id)}
-              {toggleFavorite? (
+            <div className="p-2 align-items-center"  style={{ maxWidth: '200px', minWidth: '200px'}}>
+                <Link className="btn btn-link" to={`/products/${product.id}`}>Mas detalles</Link>
+            </div>
+        
+            <div className="p-2 align-items-center"  style={{ maxWidth: '300px', minWidth: '300px'}}> 
+                <div className="d-flex justify-content-between">
+                <div className="bi bi-x text-danger" style={{ fontSize: '4em' }}  onClick={() => handleToggleCart(product.id)}></div>
                 
-                <i className={isFavorite(product.id)? "bi bi-balloon-heart-fill text-danger fs-3": "bi bi-balloon-heart text-danger fs-3"} onClick={() => handleToggleFavorite(product.id)} />
-              ) : (
-                <i className={isFavorite(product.id)? "bi bi-balloon-heart-fill text-danger fs-3": "bi bi-balloon-heart text-danger fs-3"} onClick={() => handleToggleFavorite(product.id)} />
-              )}
-
+                </div>
             </div>
-            <p className="card-text"><small className="text-body-secondary">{product.category.name}</small></p>
-
-
-            <p className="card-text " >{product.description}</p>
-
-
-            <h1 className="">${product.price}</h1>
-
-            <div className="d-flex justify-content-between">
-              <Link className="btn btn-link" to={`/products/${product.id}`}>Mas detalles</Link>
-
-               {/* Muestra el icono de corazón */isCart(product.id)}
-               {toggleCart? (
-                
-                <button className={isCart(product.id)? "btn btn-danger":"btn btn-primary" } onClick={() => handleToggleCart(product.id)}>Ya NO Lo Quiero</button>
-              ) : (
-                <button className={isCart(product.id)? "btn btn-danger":"btn btn-primary"}  onClick={() => handleToggleCart(product.id)}>{isCart(product.id)?"Ya NO Lo Quiero :":"Lo Quiero"}</button>
-              )}
-             
-            </div>
-
-          </div>
         </div>
-      </div>
+
+
 
       {/*MODAL */}
 
@@ -174,5 +143,5 @@ const ProductCard = ({ product }) => {
   )
 }
 
-export default ProductCard
+export default ProductCardCart
 
