@@ -1,24 +1,26 @@
 import logoShoppyApp from '../../assets/logoShoppyApp.svg'
-import {useState} from 'react'
+import { useState, useEffect } from 'react'
 import useAuth from '../../hooks/useAuth'
 import { Link, useNavigate } from 'react-router-dom'
 
 
+
 const Navbar = () => {
+
   let navigate = useNavigate()
   let auth = useAuth();
-  const {  cart } = useAuth();
+  const { cart } = useAuth();
 
-  const {existCart, setExistCart}=useState(false)
+  const { existCart, setExistCart } = useState(false)
 
-  const calCant = () => {
+  const totCantCart = () => {
     let totCant = 0
     cart.forEach(e => {
-        totCant = totCant + e.cant
+      totCant = totCant + e.cant
     });
     return totCant
-}
-  
+  }
+
   const cerrarSesion = () => {
 
     auth.signout(() => {
@@ -26,7 +28,12 @@ const Navbar = () => {
     })
   }
 
-  //console.log(auth.userProfile) 
+  useEffect(() => {
+
+    totCantCart()
+
+  }, [cart]);
+
 
   return (
 
@@ -54,28 +61,28 @@ const Navbar = () => {
 
         {auth.isLoggedIn
           ? <div className="dropdown text-end d-flex align-items-center justify-content-center">
-            
-              {calCant()?
-               <Link className="position-relative m-0 p-0" to="cart">
-              <i className="bi bi-cart fs-2  me-4"></i>
-              <span className="position-absolute top-50 start-50 translate-middle badge rounded-pill bg-danger">
-                {calCant()}
-                <span className="visually-hidden">unread messages</span>
-              </span>
+
+            {totCantCart() ?
+              <Link className="position-relative m-0 p-0" to="cart">
+                <i className="bi bi-cart fs-2  me-4"></i>
+                <span className="position-absolute top-50 start-50 translate-middle badge rounded-pill bg-danger">
+                  {totCantCart()}
+                  <span className="visually-hidden">unread messages</span>
+                </span>
               </Link>
-              :<></>
-              
+              : <></>
+
+            }
+
+            <a className="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              {auth.userProfile.avatar
+                ? <img src={auth.userProfile.avatar} alt="mdo" width="32" height="32" className="rounded-circle" />
+
+                : <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
               }
-             
-              <a className="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                {auth.userProfile.avatar
-                  ? <img src={auth.userProfile.avatar} alt="mdo" width="32" height="32" className="rounded-circle" />
+            </a>
 
-                  : <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
-                }
-              </a>
 
-            
 
             <ul className="dropdown-menu text-small">
               <li className="text-center">{auth.userProfile.name}</li>

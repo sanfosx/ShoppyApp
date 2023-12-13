@@ -37,6 +37,7 @@ const ProductCard = ({ product }) => {
 
          /* otras propiedades del producto */ });
       setToggleCart(true)
+      setShowCartModal(true)
     }
   };
 
@@ -52,6 +53,7 @@ const ProductCard = ({ product }) => {
         images: product.images,
         description: product.description,
         category: product.category,
+        cant:1,
 
          /* otras propiedades del producto */ });
       setToggleFavorite(true)
@@ -135,7 +137,7 @@ const ProductCard = ({ product }) => {
                 
                 <button className={isCart(product.id)? "btn btn-danger":"btn btn-primary" } onClick={() => handleToggleCart(product.id)}>Ya NO Lo Quiero :(</button>
               ) : (
-                <button className={isCart(product.id)? "btn btn-danger":"btn btn-primary"}  onClick={() => handleToggleCart(product.id)}>{isCart(product.id)?"Ya NO Lo Quiero :(":"Lo Quiero"}</button>
+                <button className={isCart(product.id)? "btn btn-danger":"btn btn-primary"}  onClick={() => handleToggleCart(product.id) }>{isCart(product.id)?"Ya NO Lo Quiero :(":"Lo Quiero"}</button>
               )}
              
             </div>

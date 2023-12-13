@@ -4,10 +4,11 @@ export let AuthContext = createContext(null);
 
 // eslint-disable-next-line react/prop-types
 function AuthProvider({ children }) {
+  let [cant, setCant] = useState()
   let [isLoggedIn, setIsLoggedIn] = useState(false);
   let [user, setUser] = useState(null);
   let [userProfile, setUserProfile] = useState(null);
-  let [cart, setCart]= useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [])
+  let [cart, setCart] = useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [])
   let [favorites, setFavorites] = useState(localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [])
 
   //cuando inicia sesion
@@ -28,7 +29,7 @@ function AuthProvider({ children }) {
     return callback();
 
   };
-//cuando cierra sesion se borran todos los datos
+  //cuando cierra sesion se borran todos los datos
   let signout = (callback) => {
     localStorage.removeItem('ACCESS_TOKEN')
     localStorage.removeItem('USER_PROFILE')
@@ -57,11 +58,27 @@ function AuthProvider({ children }) {
 
   //CARRITO
   const addToCart = (itemCart) => {
+
     const updatedCart = [...cart, itemCart];
     setCart(updatedCart);
     // Guardar favoritos en localStorage
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
+
+  const updateCart = (item, op) => {
+    console.log("que tiene item", item.cant)
+    setCant(item.cant)
+    const idx = cart.findIndex((e) => e.id === item.id)
+    const aux = cart
+    if (op === -1) {
+      aux[idx].cant = cant - 1
+    } else {
+      aux[idx].cant = cant + 1
+    }
+    aux[idx].tot = aux[idx].cant * aux[idx].price
+    setCart([...aux])
+    localStorage.setItem('cart', JSON.stringify([...aux]))
+  }
 
   const removeToCart = (itemCartId) => {
     const updatedCart = cart.filter((itemCart) => itemCart.id !== itemCartId);
@@ -70,15 +87,25 @@ function AuthProvider({ children }) {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
+  let value = {
+    user,
+    signin,
+    signout,
+    userProfile,
+    isLoggedIn,
+    favorites,
+    addFavorite,
+    removeFavorite,
+    cart,
+    addToCart,
+    removeToCart,
+    updateCart
+  };
 
-
-  console.log(userProfile)
-  let value = { user, signin, signout, userProfile, isLoggedIn, favorites, addFavorite, removeFavorite, cart, addToCart, removeToCart };
-
-//leer los datos de usuario de la api
+  //leer los datos de usuario de la api
   const fetchProfile = async () => {
     if (user) {
-      console.log("q tiene user",user)
+      console.log("q tiene user", user)
       // Simulación de solicitud de información del perfil del usuario
       const response = await fetch('https://api.escuelajs.co/api/v1/auth/profile', {
         headers: {
@@ -115,6 +142,8 @@ function AuthProvider({ children }) {
     fetchProfile();
 
   }, [user]);
+
+
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

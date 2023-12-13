@@ -11,7 +11,6 @@ const ProductPage = () => {
     const { id } = useParams()
     const { data, isLoading, isError, error } = useQuery('ProductsDetails', () => PlatziAPI(`products/${id}`));
 
-        
     const { user, favorites, addFavorite, removeFavorite, cart, addToCart, removeToCart } = useAuth();
     const [toggleFavorite, setToggleFavorite] = useState()
     const [toggleCart, setToggleCart] = useState()

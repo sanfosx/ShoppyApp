@@ -1,5 +1,6 @@
 import  useAuth  from '../hooks/useAuth'
 import ProductCard from '../components/Products/ProductCard';
+import ItemShoppingCart from '../components/ItemShoppingCart';
 
 const UserShoppingPage = () => {
   const {  cart } = useAuth();
@@ -7,9 +8,9 @@ const UserShoppingPage = () => {
 
   return (
     <div>
-      <h1>Mis Favoritos</h1>
+      <h1>Mi carrito</h1>
       {cart?.map((product) => (
-          <ProductCard key={product.id} product={product}/>
+          <ItemShoppingCart key={product.id} itemCart={product}/>
         ))}
     </div>
   )

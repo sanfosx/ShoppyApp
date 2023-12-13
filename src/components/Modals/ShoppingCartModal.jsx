@@ -1,39 +1,48 @@
 import { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Offcanvas } from 'react-bootstrap';
+import useAuth from '../../hooks/useAuth'
+import ItemShoppingCart from '../ItemShoppingCart';
 
 // eslint-disable-next-line react/prop-types
-const ShoppingCartModal = ({ show, onHide, onAddCategory }) => {
-    const [productName, setCategoryName] = useState('');
-    const [productImage, setCategoryImage] = useState('');
+const ShoppingCartModal = ({ show, onHide }) => {
+    const { cart, addToCart, removeToCart } = useAuth();
 
-    const handleAddCategory = () => {
-        const newCategory = {
-            name: productName,
-            image: productImage,
-        };
+    const totCantCart = () => {
+        let totCant = 0
+        cart.forEach(e => {
+          totCant = totCant + e.cant
+        });
+        return totCant
+      }
 
-        onAddCategory(newCategory);
-        onHide();
-    };
 
     return (
-        <Modal show={show} onHide={onHide} dialogClassName="custom-modal">
-            <Modal.Header closeButton>
-                <Modal.Title>Carrito de compras</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-               <h1>Mi carrito de compras 100</h1>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="light" onClick={onHide}>
-                    Cerrar
-                </Button>
-                <Button variant="dark" onClick={handleAddCategory}>
-                    Concretar compra
-                </Button>
-            </Modal.Footer>
-        </Modal>
+
+        <Offcanvas show={show} onHide={onHide} placement={'end'}>
+            <Offcanvas.Header closeButton>
+                <Offcanvas.Title>
+                    <h4 className="d-flex justify-content-between align-items-center">
+                        <span className="text-primary pe-3">Mi Carrito</span>
+                        {totCantCart()&&
+                        <span className="badge bg-primary rounded-pill">{totCantCart()}</span>}
+                    </h4>
+                </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+                {cart?.map((itemCart) => (
+
+                    <ItemShoppingCart itemCart={itemCart} key={itemCart.id} />
+                ))}
+
+            <button className="btn btn-dark botom-3">Finalizar compra</button>
+            </Offcanvas.Body>
+            
+        </Offcanvas >
+
     );
+
+
 };
 
 export default ShoppingCartModal;
+
