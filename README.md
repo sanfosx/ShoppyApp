@@ -10,19 +10,7 @@
    <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
    </p>
 
-![Static Badge](https://img.shields.io/badge/https%3A%2F%2Fgithub.com%2Fsanfosx%2FShoppyApp%2Ftree%2Fivanmaxibt)
-
-<p align="center">
-   ![GitHub issues] (https://img.shields.io/github/issues/sanfosx/ShoppyApp)
-    ![GitHub forks] (https://img.shields.io/github/forks/sanfosx/ShoppyApp)
-    ![GitHub stars] (https://img.shields.io/github/stars/sanfosx?style=social)
-    ![GitHub license] (https://img.shields.io/github/stars/sanfosx/ShoppyApp)
-   </p>
-
-![GitHub issues] (https://img.shields.io/github/issues/sanfosx/ShoppyApp)
-![GitHub forks] (https://img.shields.io/github/forks/sanfosx/ShoppyApp)
-![GitHub stars] (https://img.shields.io/github/stars/sanfosx?style=social)
-![GitHub license] (https://img.shields.io/github/stars/sanfosx/ShoppyApp)
+![GitHub issues](https://img.shields.io/github/issues/sanfosx/ShoppyApp) ![GitHub forks] (https://img.shields.io/github/forks/sanfosx/ShoppyApp) ![GitHub stars] (https://img.shields.io/github/stars/sanfosx/ShoppyApp) ![GitHub license] (https://img.shields.io/github/license/sanfosx/ShoppyApp)
 
 # React + Vite
 
