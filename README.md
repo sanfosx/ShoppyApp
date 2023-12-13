@@ -10,16 +10,10 @@
    <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
    <img src="https://img.shields.io/github/issues/sanfosx/ShoppyApp">
    <img src="https://img.shields.io/github/stars/sanfosx/ShoppyApp">
-   <img src="https://img.shields.io/github/stars/sanfosx/ShoppyApp">
+   <img src="https://img.shields.io/github/forks/sanfosx/ShoppyApp">
    <img src="https://img.shields.io/github/license/sanfosx/ShoppyApp">
    </p>
 
-
-
-![GitHub issues](https://img.shields.io/github/issues/sanfosx/ShoppyApp)
-![GitHub forks](https://img.shields.io/github/forks/sanfosx/ShoppyApp)
-![GitHub stars](https://img.shields.io/github/stars/sanfosx/ShoppyApp) 
-![GitHub license](https://img.shields.io/github/license/sanfosx/ShoppyApp)
 
 # React + Vite
 
