@@ -27,22 +27,81 @@
 
 **Características de la aplicación y demostración**
 
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=k0R0oHpNfL4?start=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 **Acceso al proyecto**
+
+*Página:* https://shoppy-app-nine.vercel.app/
+
+*Repositorio:* https://github.com/sanfosx/ShoppyApp
 
 **Tecnologías utilizadas**
 
-[React: una librería de JavaScript para crear interfaces de usuario dinámicas y reactivas.]
-[Vite: un framework de desarrollo web que optimiza el rendimiento de la aplicación mediante el uso de herramientas como el Fast Refresh, el Hot Module Replacement y el Tree Shaking.]
-react-router-dom: una librería de React que permite gestionar las rutas de la aplicación y navegar entre las distintas páginas.
-axios: una librería de JavaScript que permite hacer peticiones HTTP de forma sencilla y compatible con diferentes navegadores y plataformas.
-vitejs/plugin-react: un plugin de Vite que habilita el Fast Refresh para los componentes de React, lo que permite actualizar la interfaz de usuario sin perder el estado de la aplicación.
-eslint: una herramienta de análisis de código que ayuda a verificar la calidad y el estilo del código JavaScript y a detectar y corregir posibles errores.
+*React: una librería de JavaScript para crear interfaces de usuario dinámicas y reactivas.*
+
+
+*Vite: un framework de desarrollo web que optimiza el rendimiento de la aplicación mediante el uso de herramientas como el Fast Refresh, el Hot Module Replacement y el Tree Shaking.*
+
+
+*react-router-dom: una librería de React que permite gestionar las rutas de la aplicación y navegar entre las distintas páginas.
+axios: una librería de JavaScript que permite hacer peticiones HTTP de forma sencilla y compatible con diferentes navegadores y plataformas.*
+
+
+*vitejs/plugin-react: un plugin de Vite que habilita el Fast Refresh para los componentes de React, lo que permite actualizar la interfaz de usuario sin perder el estado de la aplicación.*
+
+
+*eslint: una herramienta de análisis de código que ayuda a verificar la calidad y el estilo del código JavaScript y a detectar y corregir posibles errores.*
 
 **Equipo**
 
+
+Pedro Raul Rios
+
+
+Martín Alejandro Caro
+
+
+Julian	Meier
+
+
+Alvaro Alejandro	Guiffrey
+
+
+Santiago Saul	Foschiatti
+
+
+Iván	Bustos
+
+
+Federico	Pernuzzi
+
+
+Bernardo	Marozzi
+
+
+Daniel Ernesto Obregon
+
+
+Victor Andrés	Bianchi Núñez
+
+
+Facundo	Tognola
+
+
+Joaquin	Frattin
+
+
+Sebastián	Rucci
+
+
+Luciano	Costantini
+
+
+Cesar	Sesma
+
 **Licencia**
 
-**Conclusión**
+*© Codo a Codo React 2023 Comision 23643 Grupo 6*
 
 # React + Vite
 
