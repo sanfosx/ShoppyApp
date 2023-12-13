@@ -32,10 +32,9 @@
 *El proyecto está en una fase de desarrollo continuo, lo que significa que, aunque funciona correctamente, todavía hay aspectos que se pueden optimizar y progresar. Nuestro objetivo es ofrecer un producto de calidad que satisfaga las necesidades y expectativas de nuestros clientes, por lo que estamos trabajando constantemente en la mejora de sus características y funcionalidades.*
 
 **Características de la aplicación y demostración**
-```html
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=k0R0oHpNfL4?start=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-```
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/)](https://www.youtube.com/watch?v=k0R0oHpNfL4?start=0)
+
 **Acceso al proyecto**
 
 *Página:* https://shoppy-app-nine.vercel.app/
