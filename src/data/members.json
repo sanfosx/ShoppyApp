@@ -11,7 +11,7 @@
     "id": 2,
     "name": "Iván Bustos",
     "description": "Alumno.",
-    "image": "sinImagen.png",
+    "image": "IvanBustos.jpeg",
     "cellPhone": "",
     "mail": ""
   },
@@ -19,7 +19,7 @@
     "id": 3,
     "name": "Martín Alejandro Caro",
     "description": "Alumno.",
-    "image": "sinImagen.png",
+    "image": "MartinAlejandroCaro.jpeg",
     "cellPhone": "",
     "mail": ""
   },
@@ -27,7 +27,7 @@
     "id": 4,
     "name": "Luciano Costantini",
     "description": "Alumno.",
-    "image": "sinImagen.png",
+    "image": "LucianoCostantini.jpeg",
     "cellPhone": "",
     "mail": ""
   },
@@ -42,10 +42,10 @@
   {
     "id": 6,
     "name": "Joaquin Frattin",
-    "description": "Alumno.",
-    "image": "sinImagen.png",
-    "cellPhone": "",
-    "mail": ""
+    "description": "Alumno. Programador PHP, Python, JS, C++, React js",
+    "image": "Joaquinfrattin.jpg",
+    "cellPhone": "03464 15588276",
+    "mail": "joaquinfrattin@gmail.com"
   },
   {
     "id": 7,
@@ -59,7 +59,7 @@
     "id": 8,
     "name": "Julian Meier",
     "description": "Alumno.",
-    "image": "sinImagen.png",
+    "image": "JulianMeier.jpeg",
     "cellPhone": "",
     "mail": ""
   },
@@ -67,7 +67,7 @@
     "id": 9,
     "name": "Daniel Ernesto Obregon",
     "description": "Alumno.",
-    "image": "sinImagen.png",
+    "image": "DanielObregon.jpeg",
     "cellPhone": "",
     "mail": ""
   },
@@ -75,7 +75,7 @@
     "id": 10,
     "name": "Pedro Raul Rios",
     "description": "Alumno.",
-    "image": "sinImagen.png",
+    "image": "RiosPedro.jpeg",
     "cellPhone": "",
     "mail": ""
   },
@@ -83,7 +83,7 @@
     "id": 11,
     "name": "Sebastián Rucci",
     "description": "Alumno.",
-    "image": "sinImagen.png",
+    "image": "RucciSebastian.jpeg",
     "cellPhone": "",
     "mail": ""
   },
@@ -91,7 +91,7 @@
     "id": 12,
     "name": "Facundo Tognola",
     "description": "Alumno.",
-    "image": "sinImagen.png",
+    "image": "FacundoTognola.jpg",
     "cellPhone": "",
     "mail": ""
   }

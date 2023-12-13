@@ -88,8 +88,14 @@ const ProductPage = () => {
                             <row> 
                             <div className='d-flex align-items-center'>
                             <h1 className='flex-grow-1'>{data.title}</h1>
+                                {/* Muestra el icono de corazón */isFavorite(data.id)}
+                                {toggleFavorite? (
+                                    
+                                    <i className={isFavorite(data.id)? "bi bi-balloon-heart-fill text-danger fs-3": "bi bi-balloon-heart text-danger fs-3"} onClick={() => handleToggleFavorite(data.id)} />
+                                ) : (
+                                    <i className={isFavorite(data.id)? "bi bi-balloon-heart-fill text-danger fs-3": "bi bi-balloon-heart text-danger fs-3"} onClick={() => handleToggleFavorite(data.id)} />
+                                )}
 
-                            <i className="bi bi-balloon-heart-fill text-danger fs-3" onClick={() => handleToggleFavorite(product.id)} />
                             </div>
                             <Stack direction="horizontal" gap={2}>
                             <Badge bg="info" text="dark">{data.category.name}</Badge>
