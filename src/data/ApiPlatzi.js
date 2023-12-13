@@ -2,17 +2,6 @@ import axios from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
 const API_BASE_URL = 'https://api.escuelajs.co/api/v1/'; // Reemplaza con la URL de tu API
 
-export const useDeleteData = () => {
-  const queryClient = useQueryClient();
-  return useMutation(
-    (url) => axios.delete(`${API_BASE_URL + url}`),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries('products'); // Invalida la caché para actualizar los datos
-      },
-    }
-  );
-};
 //Crear Categoria
 export const useCreateData = () => {
   const queryClient = useQueryClient();
@@ -27,11 +16,42 @@ export const useCreateData = () => {
   );
 };
 
+//Edit category
+export const useEditCategory = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    (updatedData) => {
+      // Supongamos que updatedData contiene el ID del producto y los nuevos datos a actualizar
+      const { categoryId, ...newData } = updatedData;
+      return axios.put(`${API_BASE_URL}categories/${categoryId}`, newData);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('categories');
+      },
+    }
+  );
+};
+
+//Delete category
+export const useDeleteCategory = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    (url) => axios.delete(`${API_BASE_URL + url}`),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('categories'); // Invalida la caché para actualizar los datos
+      },
+    }
+  );
+};
+
 //Crear Producto
 export const useCreateProduct = () => {
   const queryClient = useQueryClient();
   return useMutation(
     (newData) => axios.post(`${API_BASE_URL}products/`, newData),
+    //console.log('q tiene el nuevo product', newData),
     {
       onSuccess: () => {
         queryClient.invalidateQueries('products'); // Invalida la caché para actualizar los datos
@@ -40,6 +60,40 @@ export const useCreateProduct = () => {
     }
   );
 };
+
+//Edit product
+export const useEditProduct = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    (updatedData) => {
+      // Supongamos que updatedData contiene el ID del producto y los nuevos datos a actualizar
+      const { productId, ...newData } = updatedData;
+      return axios.put(`${API_BASE_URL}products/${productId}`, newData);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('products');
+      },
+    }
+  );
+};
+
+//Delete product
+export const useDeleteProduct = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    (url) => axios.delete(`${API_BASE_URL + url}`),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('products'); // Invalida la caché para actualizar los datos
+      },
+    }
+  );
+};
+
+
+
+
 
 
 //get pltziapi
