@@ -1,31 +1,44 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import ImageComponent from './ImgeComponent/ImageComponent'
-import useAuth from '../hooks/useAuth'
+import { useCart } from '../contexts/CartContext';
 
 import '../App.css'
 
 
 const ItemShoppingCart = ({ itemCart }) => {
-    const { updateCart, removeToCart } = useAuth()
-    const [cant, setCant] = useState(itemCart.cant? itemCart.cant : 1)
-    const [price, setPrice] = useState(itemCart.price)
 
-    
-    
+    const { state, dispatch } = useCart();
+    let [cant, setCant] = useState(itemCart.quantity)
+    const [item, setItem] = useState(itemCart)
+    const [total , setTotal]= useState(itemCart.total)
+
+
+   
+
     const increment = (item) => {
-        setCant(cant + 1)
-        updateCart(item)
-        setPrice(cant * item.price)
-
+        setCant(++cant)
+        console.log(cant,"esto es cant")
+        dispatch({ type: 'INCREMENT_QUANTITY', payload: { id: item.id } })
+       setTotal(item.price * (cant)) 
+       
     }
 
     const decrement = (item) => {
         if (cant > 1) {
-            setCant(cant - 1)
-            updateCart(item, -1)
-            setPrice(cant * item.price)
+            setCant(--cant)
+            dispatch({ type: 'DECREMENT_QUANTITY', payload: { id: item.id } })
+            setTotal( item.price * (cant))
+    
         }
-    }    
+    }
+
+    const getTotal =(id)=>{
+        state.cart.forEach((item)=>{
+            if(item.id===id){
+                return item.total
+            }
+        })
+    }
 
     return (
 
@@ -36,7 +49,7 @@ const ItemShoppingCart = ({ itemCart }) => {
                     <ImageComponent url={itemCart.images[0]} className={"item-cart-img align-items-center justify-content-center"} />
                     <div className="p-1">
                         <h6 className="my-0">{itemCart.title}</h6>
-                        <small className="text-body-secondary text-truncate">{itemCart.description}</small>
+                        <small className="text-body-secondary text-truncate">{item.description}</small>
                         <div className="d-flex flex-row align-items-center justify-content-center mt-2">
 
                             <button onClick={() => decrement(itemCart)} className='me-2'>-</button>
@@ -44,8 +57,8 @@ const ItemShoppingCart = ({ itemCart }) => {
                             <button onClick={() => increment(itemCart)} className='ms-2'>+</button>
                         </div>
                     </div>
-                    <strong className="text-body-secondary">$ {price}</strong>
-                    <i className=" bi bi-trash" onClick={()=> removeToCart(itemCart.id)}></i>
+                    <strong className="text-body-secondary">$ {total}</strong>
+                    <i className=" bi bi-trash" onClick={() => dispatch({ type: 'REMOVE_FROM_CART', payload: { id: itemCart.id } })}></i>
                 </li>
 
             </ul>

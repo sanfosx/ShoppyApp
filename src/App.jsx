@@ -15,11 +15,13 @@ import UserShoppingPage from './pages/UserShoppingPage'
 import UserDataPage from './pages/UserDataPage'
 import AuthProvider from './contexts/AuthContext'
 import UserBuysPage from './pages/UserBuysPage'
+import { CartProvider } from './contexts/CartContext'
 
 function App() {
 
   return (
     <AuthProvider>
+      <CartProvider>
     <Routes>
        <Route path="/" element={<LandingPage />}></Route>
        <Route path="/login" element={<LoginPage />}></Route>
@@ -38,6 +40,7 @@ function App() {
         <Route path="/compras" element={<UserBuysPage/>}></Route>
       </Route>
     </Routes>
+    </CartProvider>
     </AuthProvider>
   )
 }

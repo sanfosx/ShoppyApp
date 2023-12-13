@@ -8,10 +8,12 @@ import EditProductModal from '../Modals/EditProductModal'
 import { useEditProduct, useDeleteProduct } from '../../data/ApiPlatzi'
 import  useAuth  from '../../hooks/useAuth'
 import ShoppingCartModal from '../Modals/ShoppingCartModal'
+import { useCart } from '../../contexts/CartContext';
 
 const ProductCard = ({ product }) => {
 
-  const { user, favorites, addFavorite, removeFavorite, cart, addToCart, removeToCart } = useAuth();
+  const { state, dispatch } = useCart();
+  const {favorites, addFavorite, removeFavorite} = useAuth();
   const [toggleFavorite, setToggleFavorite] = useState()
   const [toggleCart, setToggleCart] = useState()
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -19,23 +21,31 @@ const ProductCard = ({ product }) => {
   const [showCartModal, setShowCartModal] = useState(false);
 
   const isFavorite = (productId) => favorites.some((fav) => fav.id === productId);
-  const isCart = (productId) => cart.some((item) => item.id === productId)
+  const isCart = (productId) => state.cart.some((item) => item.id === productId)
 
   const handleToggleCart = (productId) => {
     if (isCart(productId)) {
-      removeToCart(productId);
+      dispatch({
+        type: 'REMOVE_FROM_CART',
+        payload: {
+          id: product.id,
+        },
+      });
       setToggleCart(false)
     } else {
-      addToCart({ 
-        id: productId,
-        title: product.title,
-        price: product.price,
-        images: product.images,
-        description: product.description,
-        category: product.category,
-        cant: 1
-
-         /* otras propiedades del producto */ });
+      dispatch({
+        type: 'ADD_TO_CART',
+        payload: {
+          id: product.id,
+          title: product.title,
+          description: product.description,
+          images: product.images,
+          category: product.category,
+          price: product.price, // Asegúrate de incluir el precio aquí
+          quantity: 1,
+          total: product.price,
+        },
+      });
       setToggleCart(true)
       setShowCartModal(true)
     }
@@ -53,7 +63,7 @@ const ProductCard = ({ product }) => {
         images: product.images,
         description: product.description,
         category: product.category,
-        cant:1,
+        quantity:1,
 
          /* otras propiedades del producto */ });
       setToggleFavorite(true)

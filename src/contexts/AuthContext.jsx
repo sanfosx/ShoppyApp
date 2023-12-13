@@ -4,11 +4,10 @@ export let AuthContext = createContext(null);
 
 // eslint-disable-next-line react/prop-types
 function AuthProvider({ children }) {
-  let [cant, setCant] = useState()
+  
   let [isLoggedIn, setIsLoggedIn] = useState(false);
   let [user, setUser] = useState(null);
   let [userProfile, setUserProfile] = useState(null);
-  let [cart, setCart] = useState(localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [])
   let [favorites, setFavorites] = useState(localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [])
 
   //cuando inicia sesion
@@ -18,8 +17,6 @@ function AuthProvider({ children }) {
     setUserProfile(fetchProfile(newUser));
     // Cargar favoritos desde localStorage al iniciar sesión
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCart(storedCart)
     setFavorites(storedFavorites);
     localStorage.setItem('ACCESS_TOKEN', user)
     localStorage.setItem('USER_PROFILE', JSON.stringify(userProfile))
@@ -38,7 +35,6 @@ function AuthProvider({ children }) {
     setIsLoggedIn(false);
 
     return callback();
-
   };
 
   //FAVORITOS
@@ -56,37 +52,6 @@ function AuthProvider({ children }) {
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
-  //CARRITO
-  const addToCart = (itemCart) => {
-
-    const updatedCart = [...cart, itemCart];
-    setCart(updatedCart);
-    // Guardar favoritos en localStorage
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
-
-  const updateCart = (item, op) => {
-    console.log("que tiene item", item.cant)
-    setCant(item.cant)
-    const idx = cart.findIndex((e) => e.id === item.id)
-    const aux = cart
-    if (op === -1) {
-      aux[idx].cant = cant - 1
-    } else {
-      aux[idx].cant = cant + 1
-    }
-    aux[idx].tot = aux[idx].cant * aux[idx].price
-    setCart([...aux])
-    localStorage.setItem('cart', JSON.stringify([...aux]))
-  }
-
-  const removeToCart = (itemCartId) => {
-    const updatedCart = cart.filter((itemCart) => itemCart.id !== itemCartId);
-    setCart(updatedCart);
-    // Actualizar favoritos en localStorage
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
-
   let value = {
     user,
     signin,
@@ -96,10 +61,6 @@ function AuthProvider({ children }) {
     favorites,
     addFavorite,
     removeFavorite,
-    cart,
-    addToCart,
-    removeToCart,
-    updateCart
   };
 
   //leer los datos de usuario de la api
@@ -120,7 +81,6 @@ function AuthProvider({ children }) {
         const storedUserProfile = localStorage.setItem('USER_PROFILE', JSON.stringify(data));
         // eslint-disable-next-line no-unused-vars
         const storedAccessToken = localStorage.setItem('ACCESS_TOKEN', user);
-
       }
     }
   };
@@ -143,10 +103,7 @@ function AuthProvider({ children }) {
 
   }, [user]);
 
-
-
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
-
 export default AuthProvider
 
