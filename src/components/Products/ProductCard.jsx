@@ -135,7 +135,7 @@ const ProductCard = ({ product }) => {
                {/* Muestra el icono de corazón */isCart(product.id)}
                {toggleCart? (
                 
-                <button className={isCart(product.id)? "btn btn-danger":"btn btn-primary" } onClick={() => handleToggleCart(product.id)}>Ya NO Lo Quiero :(</button>
+                <button className={isCart(product.id)? "btn btn-danger":"btn btn-primary" } onClick={() => handleToggleCart(product.id)}>Ya NO Lo Quiero</button>
               ) : (
                 <button className={isCart(product.id)? "btn btn-danger":"btn btn-primary"}  onClick={() => handleToggleCart(product.id) }>{isCart(product.id)?"Ya NO Lo Quiero :(":"Lo Quiero"}</button>
               )}
