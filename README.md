@@ -33,7 +33,7 @@
 
 **Características de la aplicación y demostración**
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/)](https://www.youtube.com/watch?v=k0R0oHpNfL4?start=0)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/k0R0oHpNfL4?si=ci_fCzmEPWw9MptN" title="ShoppyApp" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 **Acceso al proyecto**
 
